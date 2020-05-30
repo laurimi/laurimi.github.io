@@ -1,2 +1,245 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-05-12T10:56:31+02:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Mikko Lauri</title><subtitle>Researcher in Computer Science and Robotics. Multi-agent  decision-making under uncertainty, active perception,  and deep learning for robot vision.</subtitle><author><name>Mikko Lauri</name></author><entry><title type="html">Website started</title><link href="http://localhost:4000/news/2020/05/10/welcome.html" rel="alternate" type="text/html" title="Website started" /><published>2020-05-10T00:00:00+02:00</published><updated>2020-05-10T00:00:00+02:00</updated><id>http://localhost:4000/news/2020/05/10/welcome</id><content type="html" xml:base="http://localhost:4000/news/2020/05/10/welcome.html">&lt;p&gt;Today, the first version of the website is up.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="https://laurimi.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://laurimi.github.io/" rel="alternate" type="text/html" /><updated>2020-05-30T09:58:58+02:00</updated><id>https://laurimi.github.io/feed.xml</id><title type="html">Mikko Lauri</title><subtitle>Researcher in Computer Science and Robotics. Multi-agent  decision-making under uncertainty, active perception,  and deep learning for robot vision.</subtitle><author><name>Mikko Lauri</name></author><entry><title type="html">Active perception and decentralized decision-making</title><link href="https://laurimi.github.io/research/2020/05/18/active-perception.html" rel="alternate" type="text/html" title="Active perception and decentralized decision-making" /><published>2020-05-18T00:00:00+02:00</published><updated>2020-05-18T00:00:00+02:00</updated><id>https://laurimi.github.io/research/2020/05/18/active-perception</id><content type="html" xml:base="https://laurimi.github.io/research/2020/05/18/active-perception.html">&lt;p&gt;A lot of my research work deals with &lt;em&gt;active perception&lt;/em&gt;.
+Active perception is a process by which an agent, a software agent or an embodied agent such as a robot, can perceive its environment to reduce uncertainty in order to accomplish some task.
+For instance, a robot that wants to grab a cup from the kitchen table first needs to detect where the cup is, perhaps by moving around the table and capturing images as it goes.
+Here, the robot is engaging in active perception towards the end goal of grasping the cup.&lt;/p&gt;
+
+&lt;p&gt;To put it another way, &lt;a class=&quot;citation&quot; href=&quot;#Bajcsy_Revisiting&quot;&gt;(Bajcsy et al., 2018)&lt;/a&gt; states that&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;[a]n agent is an active perceiver if it knows why it wishes to sense, and then chooses what to perceive, and determines how, when and where to achieve that perception.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;In this post, I give an overview of my recent research on &lt;em&gt;multi-agent active perception&lt;/em&gt;.
+In multi-agent active perception, a team of several agents collaboratively engages in active perception.
+You can think of a group of search and rescue robots attempting to locate victims of a disaster, or a team of exploration rovers collecting scientific samples on the surface of a planet.&lt;/p&gt;
+
+&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;I will consider multi-agent active perception as sequential decision-making tasks with an underlying system state.
+At every discrete time step, each agent takes an action.
+A transition in the system state may happen, conditional on the actions selected by the agents.
+Consequently, the agents perceive observations that are correlated with the system state.
+I will focus on the type of task that has a finite duration.
+That is, at some point, the robots are done, the observations they collected are pooled.
+The goal is to &lt;em&gt;plan how the agents should act&lt;/em&gt; so that they collect the most useful data.&lt;/p&gt;
+
+&lt;p&gt;Many sources of uncertainty are prevalent in real-world systems.
+An agent may not know its own nor the state of its environment fully.
+The state transitions are not necessarily deterministic, but are affected by random chance.
+The observations may not reveal the underlying state completely.
+There may be limited communication, or no communication at all between the agents.
+To address all these uncertainties in a principled manner, a powerful model is needed.
+This model is the decentralized Partially observable Markov decision process, or Dec-POMDP &lt;a class=&quot;citation&quot; href=&quot;#Oliehoek2016&quot;&gt;(Oliehoek &amp;amp; Amato, 2016)&lt;/a&gt;.
+In the next sections, I will describe the Dec-POMDP model, and then talk more about my research – how to model and solve multi-agent active perception problems as Dec-POMDPs.&lt;/p&gt;
+
+&lt;h2 id=&quot;mdp-pomdps-and-dec-pomdps&quot;&gt;MDP, POMDPs, and Dec-POMDPs&lt;/h2&gt;
+&lt;p&gt;The Dec-POMDP can be a lot to grasp, so it helps to go through a few simpler models to get a better understanding.
+We will first look at the Markov decision process, or MDP, that is also widely used as an underlying model in Reinforcement Learning (RL).
+This model features a single agent acting in an system that undergoes stochastic state transitions conditional on the actions chosen by the agent.
+The state of the system is fully observable and known to the agent.
+Then, we will look at the partially observable MDP, or POMDP, that drops the assumption of full observability of the state, and adds observations.
+Finally, we take a look at the Dec-POMDP, that has all the features of a POMDP but with multiple agents.&lt;/p&gt;
+
+&lt;h3 id=&quot;full-state-observability---markov-decision-process-mdp&quot;&gt;Full state observability - Markov decision process (MDP)&lt;/h3&gt;
+&lt;p&gt;In a Markov decision process (MDP) model, at each discrete time \(t\) a system is in some state \(s_t\) that represents all relevant aspects we are interested in.&lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;
+For example, let’s consider an apartment cleaning robot equipped with an arm that it can use to collect trash.
+The state might consist of an indicator of whether the robot is currently holding trash in its arm (and therefore can’t pick any more trash), an indicator of the robot’s current location in the apartment, and an indicator for each possible location \(l = 1, 2, \ldots, n \) about whether it contains trash or not.
+Formally, the state is a tuple \(s_t = ( s_{holding-thrash,t}, s_{robot-location,t}, s_{trash(1),t}, \ldots, s_{trash(l),t})\).
+As you see, the state may contain aspects of both the condition of the environment, and of the agent itself.&lt;/p&gt;
+
+&lt;p&gt;At each time step, the agent in an MDP takes an action \(a_t\).
+For example, the robot from above might have a few actions to move around the apartment, for example \(a_{move-left}\) or \( a_{move-right}\), and actions to pick up or drop off trash at its current location: \(a_{pick-up}\), \(a_{drop-off}\).&lt;/p&gt;
+
+&lt;p&gt;When the agent takes an action, the state transitions conditional on the current state and the action taken.
+This state transition may be random, and it is modelled by a &lt;a href=&quot;https://en.wikipedia.org/wiki/Markov_chain&quot; target=&quot;_blank&quot;&gt;discrete-time Markov chain&lt;/a&gt; that specifies the conditional probabilities \(\mathbb{P}(s_{t+1} \mid s_t, a_t)\) for any tuples of the next state, current state, and current actions \((s_{t+1}, s_t, a_t)\).
+For instance, picking up trash&lt;/p&gt;
+
+&lt;h3 id=&quot;partial-state-observability---partially-observable-mdp-pomdp&quot;&gt;Partial state observability - partially observable MDP (POMDP)&lt;/h3&gt;
+
+&lt;h3 id=&quot;multiple-agents---decentralized-pomdp-dec-pomdp&quot;&gt;Multiple agents - decentralized POMDP (Dec-POMDP)&lt;/h3&gt;
+
+&lt;h2 id=&quot;multi-agent-active-perception-as-a-dec-pomdp&quot;&gt;Multi-agent active perception as a Dec-POMDP&lt;/h2&gt;
+
+&lt;ol class=&quot;bibliography&quot;&gt;&lt;li&gt;&lt;div class=&quot;text-justify&quot;&gt;&lt;span id=&quot;Bajcsy_Revisiting&quot;&gt;Bajcsy, R., Aloimonos, Y., &amp;amp; Tsotsos, J. K. (2018). Revisiting active perception. &lt;i&gt;Autonomous Robots&lt;/i&gt;, &lt;i&gt;42&lt;/i&gt;(2), 177–196.&lt;/span&gt;&lt;/div&gt;
+
+
+
+
+
+
+
+[&lt;a onclick=&quot;toggleBibtexBajcsy_Revisiting()&quot;&gt;Show/hide BibTeX&lt;/a&gt;]
+[&lt;a onclick=&quot;copyBibtexBajcsy_Revisiting()&quot;&gt;Copy BibTeX to clipboard&lt;/a&gt;]
+&lt;div id=&quot;aBajcsy_Revisiting&quot; style=&quot;display: none;&quot;&gt;
+&lt;pre id=&quot;bBajcsy_Revisiting&quot;&gt;@article{Bajcsy_Revisiting,
+  title = {Revisiting active perception},
+  author = {Bajcsy, Ruzena and Aloimonos, Yiannis and Tsotsos, John K},
+  journal = {Autonomous Robots},
+  volume = {42},
+  number = {2},
+  pages = {177--196},
+  year = {2018}
+}
+&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+function toggleBibtexBajcsy_Revisiting(parameter) {
+    var x= document.getElementById('aBajcsy_Revisiting');
+    if (x.style.display === 'none') {
+        x.style.display = 'block';
+    } else {
+        x.style.display = 'none';
+    }
+}
+
+function copyBibtexBajcsy_Revisiting(parameter) {
+	// https://stackoverflow.com/a/30810322/5471520
+	var textArea = document.createElement(&quot;textarea&quot;);
+	//
+	// *** This styling is an extra step which is likely not required. ***
+	//
+	// Why is it here? To ensure:
+	// 1. the element is able to have focus and selection.
+	// 2. if element was to flash render it has minimal visual impact.
+	// 3. less flakyness with selection and copying which **might** occur if
+	//    the textarea element is not visible.
+	//
+	// The likelihood is the element won't even render, not even a
+	// flash, so some of these are just precautions. However in
+	// Internet Explorer the element is visible whilst the popup
+	// box asking the user for permission for the web page to
+	// copy to the clipboard.
+	//
+
+	// Place in top-left corner of screen regardless of scroll position.
+	textArea.style.position = 'fixed';
+	textArea.style.top = 0;
+	textArea.style.left = 0;
+
+	// Ensure it has a small width and height. Setting to 1px / 1em
+	// doesn't work as this gives a negative w/h on some browsers.
+	textArea.style.width = '2em';
+	textArea.style.height = '2em';
+
+	// We don't need padding, reducing the size if it does flash render.
+	textArea.style.padding = 0;
+
+	// Clean up any borders.
+	textArea.style.border = 'none';
+	textArea.style.outline = 'none';
+	textArea.style.boxShadow = 'none';
+
+	// Avoid flash of white box if rendered for any reason.
+	textArea.style.background = 'transparent';
+
+	textArea.value = document.getElementById('bBajcsy_Revisiting').textContent;
+
+	document.body.appendChild(textArea);
+	textArea.focus();
+	textArea.select();
+
+	try {
+	  var successful = document.execCommand('copy');
+	  var msg = successful ? 'successful' : 'unsuccessful';
+	  console.log('Copying text command was ' + msg);
+	} catch (err) {
+	  console.log('Oops, unable to copy');
+	}
+
+	document.body.removeChild(textArea);
+} 
+&lt;/script&gt;&lt;/li&gt;
+&lt;li&gt;&lt;div class=&quot;text-justify&quot;&gt;&lt;span id=&quot;Oliehoek2016&quot;&gt;Oliehoek, F. A., &amp;amp; Amato, C. (2016). &lt;i&gt;A Concise Introduction to Decentralized POMDPs&lt;/i&gt;. Springer.&lt;/span&gt;&lt;/div&gt;
+
+
+
+
+
+
+
+[&lt;a onclick=&quot;toggleBibtexOliehoek2016()&quot;&gt;Show/hide BibTeX&lt;/a&gt;]
+[&lt;a onclick=&quot;copyBibtexOliehoek2016()&quot;&gt;Copy BibTeX to clipboard&lt;/a&gt;]
+&lt;div id=&quot;aOliehoek2016&quot; style=&quot;display: none;&quot;&gt;
+&lt;pre id=&quot;bOliehoek2016&quot;&gt;@book{Oliehoek2016,
+  author = {Oliehoek, Frans A and Amato, Christopher},
+  title = {{A Concise Introduction to Decentralized POMDPs}},
+  year = {2016},
+  publisher = {Springer}
+}
+&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+function toggleBibtexOliehoek2016(parameter) {
+    var x= document.getElementById('aOliehoek2016');
+    if (x.style.display === 'none') {
+        x.style.display = 'block';
+    } else {
+        x.style.display = 'none';
+    }
+}
+
+function copyBibtexOliehoek2016(parameter) {
+	// https://stackoverflow.com/a/30810322/5471520
+	var textArea = document.createElement(&quot;textarea&quot;);
+	//
+	// *** This styling is an extra step which is likely not required. ***
+	//
+	// Why is it here? To ensure:
+	// 1. the element is able to have focus and selection.
+	// 2. if element was to flash render it has minimal visual impact.
+	// 3. less flakyness with selection and copying which **might** occur if
+	//    the textarea element is not visible.
+	//
+	// The likelihood is the element won't even render, not even a
+	// flash, so some of these are just precautions. However in
+	// Internet Explorer the element is visible whilst the popup
+	// box asking the user for permission for the web page to
+	// copy to the clipboard.
+	//
+
+	// Place in top-left corner of screen regardless of scroll position.
+	textArea.style.position = 'fixed';
+	textArea.style.top = 0;
+	textArea.style.left = 0;
+
+	// Ensure it has a small width and height. Setting to 1px / 1em
+	// doesn't work as this gives a negative w/h on some browsers.
+	textArea.style.width = '2em';
+	textArea.style.height = '2em';
+
+	// We don't need padding, reducing the size if it does flash render.
+	textArea.style.padding = 0;
+
+	// Clean up any borders.
+	textArea.style.border = 'none';
+	textArea.style.outline = 'none';
+	textArea.style.boxShadow = 'none';
+
+	// Avoid flash of white box if rendered for any reason.
+	textArea.style.background = 'transparent';
+
+	textArea.value = document.getElementById('bOliehoek2016').textContent;
+
+	document.body.appendChild(textArea);
+	textArea.focus();
+	textArea.select();
+
+	try {
+	  var successful = document.execCommand('copy');
+	  var msg = successful ? 'successful' : 'unsuccessful';
+	  console.log('Copying text command was ' + msg);
+	} catch (err) {
+	  console.log('Oops, unable to copy');
+	}
+
+	document.body.removeChild(textArea);
+} 
+&lt;/script&gt;&lt;/li&gt;&lt;/ol&gt;
+&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;The state belongs to the so-called state space, which we assume to be discrete. &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name>Mikko Lauri</name></author><summary type="html">A lot of my research work deals with active perception. Active perception is a process by which an agent, a software agent or an embodied agent such as a robot, can perceive its environment to reduce uncertainty in order to accomplish some task. For instance, a robot that wants to grab a cup from the kitchen table first needs to detect where the cup is, perhaps by moving around the table and capturing images as it goes. Here, the robot is engaging in active perception towards the end goal of grasping the cup.</summary></entry><entry><title type="html">Website started</title><link href="https://laurimi.github.io/news/2020/05/10/welcome.html" rel="alternate" type="text/html" title="Website started" /><published>2020-05-10T00:00:00+02:00</published><updated>2020-05-10T00:00:00+02:00</updated><id>https://laurimi.github.io/news/2020/05/10/welcome</id><content type="html" xml:base="https://laurimi.github.io/news/2020/05/10/welcome.html">&lt;p&gt;Today, the first version of the website is up.
 I used &lt;a href=&quot;https://jekyllrb.com&quot; target=&quot;_blank&quot;&gt;jekyll&lt;/a&gt;, along with the &lt;a href=&quot;https://github.com/mmistakes/minimal-mistakes&quot; target=&quot;_blank&quot;&gt;minimal-mistakes&lt;/a&gt; theme and &lt;a href=&quot;https://github.com/inukshuk/jekyll-scholar&quot; target=&quot;_blank&quot;&gt;jekyll-scholar&lt;/a&gt; plugin for citations.&lt;/p&gt;</content><author><name>Mikko Lauri</name></author><summary type="html">Today, the first version of the website is up. I used jekyll, along with the minimal-mistakes theme and jekyll-scholar plugin for citations.</summary></entry></feed>
