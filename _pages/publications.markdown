@@ -10,4 +10,4 @@ scholar:
   bibliography_list_attributes: {reversed: "reversed"}
 ---
 
-{% bibliography %}
+{% bibliography --file references %}
