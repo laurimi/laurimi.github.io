@@ -380,7 +380,7 @@ Q^{\pi}(s,a) \triangleq \mathbb{E}\left[ R(s_0, a_0) + \sum\limits_{t=1}^{\infty
 \end{equation}
 We can also define the <em>value function</em> of \(\pi\) in a state \( s\) as
 \begin{equation}
-V^{\pi}(s) \triangleq \mathbb{E}\left[ + \sum\limits_{t=0}^{\infty}\gamma^t R(s_t, \pi(s_t)) \middle| s_0 = s\right].
+V^{\pi}(s) \triangleq \mathbb{E}\left[ \sum\limits_{t=0}^{\infty}\gamma^t R(s_t, \pi(s_t)) \middle| s_0 = s\right].
 \end{equation}
 An optimal policy maximizes the value of every state, that is, a policy \(\pi^*\) is optimal if and only if for every policy \( \pi\) and every state \(s\), \(V^{\pi^*}(s) \geq V^{\pi}(s)\).</p>
 
