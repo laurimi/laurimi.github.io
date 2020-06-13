@@ -5,8 +5,8 @@ main:
     url: /research
   - title: "Publications"
     url: /publications/
-  - title: "News"
-    url: /news
+  - title: "Posts"
+    url: /posts
   - title: "Bio"
     url: /bio
   - title: "Contact"

@@ -29,7 +29,7 @@ This problem may be formalized as a partially observable Markov decision process
 
 In particular, I am interested in tasks involving *active information gathering*, where the objective is to maximize the amount of information about the hidden state.
 The amount of information can be quantified by using information-theoretic quantities such as entropy or mutual information on the *belief state* $$ b $$, which is a probability distribution over the hidden state.
-I have developed theory and algorithms for multi-agent active information gathering in Dec-POMDPs {% cite Lauri_AAMAS2019 %} and applied the same methodology to multi-robot target tracking {% cite Lauri_ICRA2017 %}.
+I have developed theory and algorithms for multi-agent active information gathering in Dec-POMDPs {% cite Lauri_JAAMAS2020 Lauri_AAMAS2019 %} and applied the same methodology to multi-robot target tracking {% cite Lauri_ICRA2017 %}.
 I also formulated robotic exploration as a POMDP and applied it to a real robot exploring an unknown environment {% cite Lauri_RAS2016 %}.
 
 # Active perception
