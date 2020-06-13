@@ -27,6 +27,8 @@
 
 
 
+  <meta property="og:image" content="https://laurimi.github.io/assets/images/bio-photo.png">
+
 
 
 
@@ -129,7 +131,7 @@
             </li><li class="masthead__menu-item">
               <a href="/publications/">Publications</a>
             </li><li class="masthead__menu-item">
-              <a href="/news">News</a>
+              <a href="/posts">Posts</a>
             </li><li class="masthead__menu-item">
               <a href="/bio">Bio</a>
             </li><li class="masthead__menu-item">
@@ -316,7 +318,7 @@ This problem may be formalized as a partially observable Markov decision process
 
 <p>In particular, I am interested in tasks involving <em>active information gathering</em>, where the objective is to maximize the amount of information about the hidden state.
 The amount of information can be quantified by using information-theoretic quantities such as entropy or mutual information on the <em>belief state</em> \(b\), which is a probability distribution over the hidden state.
-I have developed theory and algorithms for multi-agent active information gathering in Dec-POMDPs <a class="citation" href="#Lauri_AAMAS2019">(Lauri et al., 2019)</a> and applied the same methodology to multi-robot target tracking <a class="citation" href="#Lauri_ICRA2017">(Lauri et al., 2017)</a>.
+I have developed theory and algorithms for multi-agent active information gathering in Dec-POMDPs <a class="citation" href="#Lauri_JAAMAS2020">(Lauri et al., 2020; Lauri et al., 2019)</a> and applied the same methodology to multi-robot target tracking <a class="citation" href="#Lauri_ICRA2017">(Lauri et al., 2017)</a>.
 I also formulated robotic exploration as a POMDP and applied it to a real robot exploring an unknown environment <a class="citation" href="#Lauri_RAS2016">(Lauri &amp; Ritala, 2016)</a>.</p>
 
 <h1 id="active-perception">Active perception</h1>
@@ -357,7 +359,102 @@ Unconventional viewpoints, high spatio-temporal dependency between captured imag
 We have developed a deep learning method for estimation of object poses from point cloud data <a class="citation" href="#Gao_ICRA2020">(Gao et al., 2020)</a>, attention-based segmentation of RGBD data <a class="citation" href="#Gao_IROS2017">(Gao et al., 2017)</a>, and a segmentation method for object discovery applying non-parametric Bayesian techniques for uncertainty quantification <a class="citation" href="#Lauri_SCIA2017">(Lauri &amp; Frintrop, 2017)</a>.</p>
 
 <h1 id="references">References</h1>
-<ol class="bibliography"><li><div class="text-justify"><span id="Lauri_AAMAS2019"><b>Lauri, M.</b>, Pajarinen, J., &amp; Peters, J. (2019). Information Gathering in Decentralized POMDPs by Policy Graph Improvement. <i>Proceedings of the 18th International Conference on Autonomous Agents and Multiagent Systems (AAMAS)</i>, 1143–1151. https://dl.acm.org/doi/abs/10.5555/3306127.3331815</span></div>
+<ol class="bibliography"><li><div class="text-justify"><span id="Lauri_JAAMAS2020"><b>Lauri, M.</b>, Pajarinen, J., &amp; Peters, J. (2020). Multi-agent active information gathering in discrete and continuous-state decentralized POMDPs by policy graph improvement. <i>Autonomous Agents and Multi-Agent Systems</i>, <i>34</i>(42). https://doi.org/10.1007/S10458-020-09467-6</span></div>
+
+
+
+    [<a target="_blank" rel="noopener noreferrer" href="http://doi.org/10.1007/S10458-020-09467-6">DOI</a>]
+
+
+
+	[<a target="_blank" rel="noopener noreferrer" href="https://github.com/laurimi/npgi">Code</a>]
+
+
+
+[<a onclick="toggleBibtexLauri_JAAMAS2020()">Show/hide BibTeX</a>]
+[<a onclick="copyBibtexLauri_JAAMAS2020()">Copy BibTeX to clipboard</a>]
+<div id="aLauri_JAAMAS2020" style="display: none;">
+<pre id="bLauri_JAAMAS2020">@inproceedings{Lauri_JAAMAS2020,
+  author = {Lauri, Mikko and Pajarinen, Joni and Peters, Jan},
+  title = {Multi-agent active information gathering in discrete and continuous-state decentralized POMDPs by policy graph improvement},
+  year = {2020},
+  volume = {34},
+  number = {42},
+  doi = {10.1007/S10458-020-09467-6},
+  journal = {Autonomous Agents and Multi-Agent Systems},
+  codelink = {https://github.com/laurimi/npgi}
+}
+</pre>
+</div>
+
+<script>
+function toggleBibtexLauri_JAAMAS2020(parameter) {
+    var x= document.getElementById('aLauri_JAAMAS2020');
+    if (x.style.display === 'none') {
+        x.style.display = 'block';
+    } else {
+        x.style.display = 'none';
+    }
+}
+
+function copyBibtexLauri_JAAMAS2020(parameter) {
+	// https://stackoverflow.com/a/30810322/5471520
+	var textArea = document.createElement("textarea");
+	//
+	// *** This styling is an extra step which is likely not required. ***
+	//
+	// Why is it here? To ensure:
+	// 1. the element is able to have focus and selection.
+	// 2. if element was to flash render it has minimal visual impact.
+	// 3. less flakyness with selection and copying which **might** occur if
+	//    the textarea element is not visible.
+	//
+	// The likelihood is the element won't even render, not even a
+	// flash, so some of these are just precautions. However in
+	// Internet Explorer the element is visible whilst the popup
+	// box asking the user for permission for the web page to
+	// copy to the clipboard.
+	//
+
+	// Place in top-left corner of screen regardless of scroll position.
+	textArea.style.position = 'fixed';
+	textArea.style.top = 0;
+	textArea.style.left = 0;
+
+	// Ensure it has a small width and height. Setting to 1px / 1em
+	// doesn't work as this gives a negative w/h on some browsers.
+	textArea.style.width = '2em';
+	textArea.style.height = '2em';
+
+	// We don't need padding, reducing the size if it does flash render.
+	textArea.style.padding = 0;
+
+	// Clean up any borders.
+	textArea.style.border = 'none';
+	textArea.style.outline = 'none';
+	textArea.style.boxShadow = 'none';
+
+	// Avoid flash of white box if rendered for any reason.
+	textArea.style.background = 'transparent';
+
+	textArea.value = document.getElementById('bLauri_JAAMAS2020').textContent;
+
+	document.body.appendChild(textArea);
+	textArea.focus();
+	textArea.select();
+
+	try {
+	  var successful = document.execCommand('copy');
+	  var msg = successful ? 'successful' : 'unsuccessful';
+	  console.log('Copying text command was ' + msg);
+	} catch (err) {
+	  console.log('Oops, unable to copy');
+	}
+
+	document.body.removeChild(textArea);
+} 
+</script></li>
+<li><div class="text-justify"><span id="Lauri_AAMAS2019"><b>Lauri, M.</b>, Pajarinen, J., &amp; Peters, J. (2019). Information Gathering in Decentralized POMDPs by Policy Graph Improvement. <i>Proceedings of the 18th International Conference on Autonomous Agents and Multiagent Systems (AAMAS)</i>, 1143–1151. https://dl.acm.org/doi/abs/10.5555/3306127.3331815</span></div>
 
 
 	[<a target="_blank" rel="noopener noreferrer" href="https://dl.acm.org/doi/abs/10.5555/3306127.3331815">URL</a>]

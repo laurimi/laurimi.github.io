@@ -1,158 +1,465 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="https://laurimi.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://laurimi.github.io/" rel="alternate" type="text/html" /><updated>2020-06-13T15:20:07+02:00</updated><id>https://laurimi.github.io/feed.xml</id><title type="html">Mikko Lauri</title><subtitle>Researcher in Computer Science and Robotics. Multi-agent  decision-making under uncertainty, active perception,  and deep learning for robot vision.</subtitle><author><name>Mikko Lauri</name></author><entry><title type="html">Active perception and decentralized decision-making</title><link href="https://laurimi.github.io/research/2020/06/13/active-perception.html" rel="alternate" type="text/html" title="Active perception and decentralized decision-making" /><published>2020-06-13T00:00:00+02:00</published><updated>2020-06-13T00:00:00+02:00</updated><id>https://laurimi.github.io/research/2020/06/13/active-perception</id><content type="html" xml:base="https://laurimi.github.io/research/2020/06/13/active-perception.html">&lt;p&gt;&lt;em&gt;In this post, I give an overview of my recent research on multi-agent active perception, published in the two recent papers &lt;a class=&quot;citation&quot; href=&quot;#Lauri_JAAMAS2020&quot;&gt;(Lauri et al., 2020; Lauri et al., 2019)&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.2 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
 
-&lt;p&gt;Active perception is a process by which an agent, a software agent or an embodied agent such as a robot, perceives its environment to reduce uncertainty in order to accomplish some task.
+<!-- begin _includes/seo.html --><title>Active perception and decentralized decision-making | Mikko Lauri</title>
+<meta name="description" content="In this post, I give an overview of my recent research on multi-agent active perception, published in the two recent papers (Lauri et al., 2020; Lauri et al., 2019). ">
+
+
+  <meta name="author" content="Mikko Lauri">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Mikko Lauri">
+<meta property="og:title" content="Active perception and decentralized decision-making">
+<meta property="og:url" content="https://laurimi.github.io/research/2020/06/13/active-perception.html">
+
+
+  <meta property="og:description" content="In this post, I give an overview of my recent research on multi-agent active perception, published in the two recent papers (Lauri et al., 2020; Lauri et al., 2019). ">
+
+
+
+  <meta property="og:image" content="https://laurimi.github.io/assets/images/bio-photo.png">
+
+
+
+
+
+  <meta property="article:published_time" content="2020-06-13T00:00:00+02:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://laurimi.github.io/research/2020/06/13/active-perception.html">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Mikko Lauri",
+      "url": "https://laurimi.github.io/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Mikko Lauri Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="stylesheet" href="/assets/css/academicons.css"/>
+
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Mikko Lauri
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/">Home</a>
+            </li><li class="masthead__menu-item">
+              <a href="/research">Research</a>
+            </li><li class="masthead__menu-item">
+              <a href="/publications/">Publications</a>
+            </li><li class="masthead__menu-item">
+              <a href="/posts">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/bio">Bio</a>
+            </li><li class="masthead__menu-item">
+              <a href="/contact">Contact</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/bio-photo.png" alt="Mikko Lauri" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Mikko Lauri</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Researcher in Computer Science and Robotics. Multi-agent decision-making under uncertainty, active perception, and deep learning for robot vision.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Hamburg, Germany</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="https://github.com/laurimi" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://scholar.google.com/citations?user=Ark4dHoAAAAJ" rel="nofollow noopener noreferrer"><i class="ai ai-google-scholar ai" aria-hidden="true"></i><span class="label">Google Scholar</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Active perception and decentralized decision-making">
+    <meta itemprop="description" content="In this post, I give an overview of my recent research on multi-agent active perception, published in the two recent papers (Lauri et al., 2020; Lauri et al., 2019).">
+    <meta itemprop="datePublished" content="2020-06-13T00:00:00+02:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Active perception and decentralized decision-making
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> Contents</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#planning-and-reinforcement-learning-formalisms">Planning and reinforcement learning formalisms</a>
+    <ul>
+      <li><a href="#full-state-observability---markov-decision-process-mdp">Full state observability - Markov decision process (MDP)</a></li>
+      <li><a href="#partial-state-observability---partially-observable-mdp-pomdp">Partial state observability - partially observable MDP (POMDP)</a></li>
+      <li><a href="#multiple-agents---decentralized-pomdp-dec-pomdp">Multiple agents - decentralized POMDP (Dec-POMDP)</a></li>
+    </ul>
+  </li>
+  <li><a href="#multi-agent-active-perception">Multi-agent active perception</a></li>
+  <li><a href="#conclusion">Conclusion</a></li>
+  <li><a href="#references">References</a></li>
+</ul>
+
+            </nav>
+          </aside>
+        
+        <p><em>In this post, I give an overview of my recent research on multi-agent active perception, published in the two recent papers <a class="citation" href="#Lauri_JAAMAS2020">(Lauri et al., 2020; Lauri et al., 2019)</a>.</em></p>
+
+<p>Active perception is a process by which an agent, a software agent or an embodied agent such as a robot, perceives its environment to reduce uncertainty in order to accomplish some task.
 For instance, a robot that wants to grab a cup from the kitchen table first needs to detect where the cup is, perhaps by moving around the table and capturing images as it goes.
-Here, the robot is engaging in active perception towards the end goal of grasping the cup.&lt;/p&gt;
+Here, the robot is engaging in active perception towards the end goal of grasping the cup.</p>
 
-&lt;p&gt;To put it another way, &lt;a class=&quot;citation&quot; href=&quot;#Bajcsy_Revisiting&quot;&gt;(Bajcsy et al., 2018)&lt;/a&gt; states that&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;[a]n agent is an active perceiver if it knows why it wishes to sense, and then chooses what to perceive, and determines how, when and where to achieve that perception.&lt;/p&gt;
-&lt;/blockquote&gt;
+<p>To put it another way, <a class="citation" href="#Bajcsy_Revisiting">(Bajcsy et al., 2018)</a> states that</p>
+<blockquote>
+  <p>[a]n agent is an active perceiver if it knows why it wishes to sense, and then chooses what to perceive, and determines how, when and where to achieve that perception.</p>
+</blockquote>
 
-&lt;p&gt;In multi-agent active perception, a team of agents collaboratively engages in active perception.
+<p>In multi-agent active perception, a team of agents collaboratively engages in active perception.
 You can think of a group of search and rescue robots attempting to locate victims of a disaster, or a team of exploration rovers collecting scientific samples on the surface of a planet.
 My recent research concerns the theory of such active perception problems viewed as sequential decision-making tasks.
 Each agent takes an individual action, and then perceives an individual observation.
 The agents then select the next action, and the process repeats until termination.
-We considered a very general case, with the following properties:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;The agents act independently, and there is no implicit communication or information sharing between agents&lt;/li&gt;
-  &lt;li&gt;The state undergoes a stochastic state transitions conditional on the individual actions of all agents&lt;/li&gt;
-  &lt;li&gt;The agents do not know the underlying true state of the system, but rather perceive individual observations correlated with the state.&lt;/li&gt;
-  &lt;li&gt;The objective of the agents is to reduce uncertainty about the hidden state.&lt;/li&gt;
-&lt;/ul&gt;
+We considered a very general case, with the following properties:</p>
+<ul>
+  <li>The agents act independently, and there is no implicit communication or information sharing between agents</li>
+  <li>The state undergoes a stochastic state transitions conditional on the individual actions of all agents</li>
+  <li>The agents do not know the underlying true state of the system, but rather perceive individual observations correlated with the state.</li>
+  <li>The objective of the agents is to reduce uncertainty about the hidden state.</li>
+</ul>
 
-&lt;p&gt;Such problems are appropriately modelled as decentralized partially observable Markov decision processes, or Dec-POMDPs.
+<p>Such problems are appropriately modelled as decentralized partially observable Markov decision processes, or Dec-POMDPs.
 To give a bit of context for our work, I will first review some formalizations of sequential decision-making that underlie planning and reinforcement learning.
 These are the Markov decision process (MDP), the partially observable MDP (POMDP), and finally the multiagent generalization, the decentralized POMDP (Dec-POMDP).
-Finally, I will discuss multi-agent active perception modelled as a Dec-POMDP, which the two papers referenced above are all about.&lt;/p&gt;
+Finally, I will discuss multi-agent active perception modelled as a Dec-POMDP, which the two papers referenced above are all about.</p>
 
-&lt;h2 id=&quot;planning-and-reinforcement-learning-formalisms&quot;&gt;Planning and reinforcement learning formalisms&lt;/h2&gt;
-&lt;p&gt;Markov decision processes formalize decision-making tasks with different kinds of underlying assumptions.
-Planning and reinforcement learning methods may be applied to solve the decision-making problem.&lt;/p&gt;
+<h2 id="planning-and-reinforcement-learning-formalisms">Planning and reinforcement learning formalisms</h2>
+<p>Markov decision processes formalize decision-making tasks with different kinds of underlying assumptions.
+Planning and reinforcement learning methods may be applied to solve the decision-making problem.</p>
 
-&lt;h3 id=&quot;full-state-observability---markov-decision-process-mdp&quot;&gt;Full state observability - Markov decision process (MDP)&lt;/h3&gt;
-&lt;p&gt;The basic concepts found in all Markov decision processes are &lt;em&gt;state&lt;/em&gt;, &lt;em&gt;action&lt;/em&gt;, and &lt;em&gt;reward&lt;/em&gt;.&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;The state of the system in a Markov decision process is a collection of all features and variables relevant to the problem at hand.
-For example, the state in a navigation problem might be the position of the agent in the environment.&lt;/li&gt;
-  &lt;li&gt;The actions are the choices available to the agent.
+<h3 id="full-state-observability---markov-decision-process-mdp">Full state observability - Markov decision process (MDP)</h3>
+<p>The basic concepts found in all Markov decision processes are <em>state</em>, <em>action</em>, and <em>reward</em>.</p>
+<ul>
+  <li>The state of the system in a Markov decision process is a collection of all features and variables relevant to the problem at hand.
+For example, the state in a navigation problem might be the position of the agent in the environment.</li>
+  <li>The actions are the choices available to the agent.
 For instance, the navigating agent from above might choose to move east, west, north, or south.
-Each action typically has some effect on the state: moving east will change the state of the agent so it is more to the east, and so on.&lt;/li&gt;
-  &lt;li&gt;Finally, rewards encode the task of the agent.
+Each action typically has some effect on the state: moving east will change the state of the agent so it is more to the east, and so on.</li>
+  <li>Finally, rewards encode the task of the agent.
 The reward depends on the current state and the current action.
 The greater the reward, the more desirable it is to take the action in the state.
 The navigating agent’s goal can be described through the reward: it can obtain a large positive reward when it reaches the goal location.
-On the other hand, the reward can model undesirable states: moving off a cliff ledge will result in a large negative reward.&lt;/li&gt;
-&lt;/ul&gt;
+On the other hand, the reward can model undesirable states: moving off a cliff ledge will result in a large negative reward.</li>
+</ul>
 
-&lt;p&gt;Interaction of the agent and the system in a MDP proceeds as follows.
+<p>Interaction of the agent and the system in a MDP proceeds as follows.
 The system is in some state \(s\) which is known to the agent.
 The agent then selects an action \(a\) to execute.
 The agent will obtain a reward \(r \), and the system state will transition to a new state \(s'\).
-Then the process is repeated in the new state.&lt;/p&gt;
+Then the process is repeated in the new state.</p>
 
-&lt;p&gt;The state transitions in a MDP are not deterministic, that is, they cannot always be precisely predicted.
-As a concrete example, if the agent moves east, it might end in a location exactly to the east with some &lt;em&gt;probability&lt;/em&gt;, and with some probability, it will end up in a location that is slightly off from the expected location.
+<p>The state transitions in a MDP are not deterministic, that is, they cannot always be precisely predicted.
+As a concrete example, if the agent moves east, it might end in a location exactly to the east with some <em>probability</em>, and with some probability, it will end up in a location that is slightly off from the expected location.
 The state transitions are assumed to be governed by a transition model \( T(s', a, s)\) that gives the conditional probability of the next state \(s'\) given the current state \(s\) and action \( a\).
-It is also assumed that the rewards are governed by a reward model \(R(s, a)\) that gives the immediate reward of executing action \(a\) in state \(s\).&lt;/p&gt;
+It is also assumed that the rewards are governed by a reward model \(R(s, a)\) that gives the immediate reward of executing action \(a\) in state \(s\).</p>
 
-&lt;p&gt;The key question in planning and reinforcement learning is how the agent should act in a given state to maximize the expected sum of rewards it can collect over a long time horizon.
+<p>The key question in planning and reinforcement learning is how the agent should act in a given state to maximize the expected sum of rewards it can collect over a long time horizon.
 Rewards that are obtained quickly are considered more valuable than those far in the future.
-This is modelled by a &lt;em&gt;discount factor&lt;/em&gt; \( \gamma\), a number between 0 and 1.
+This is modelled by a <em>discount factor</em> \( \gamma\), a number between 0 and 1.
 Rewards \(k\) steps in the future are discounted by \(\gamma^k\).
-The question of how to act is answered by a &lt;em&gt;policy&lt;/em&gt; that maps states to actions.
-We denote the policy as a function \(\pi \), and the action selected by the policy in state \(s\) by \(\pi(s) = a\).&lt;/p&gt;
+The question of how to act is answered by a <em>policy</em> that maps states to actions.
+We denote the policy as a function \(\pi \), and the action selected by the policy in state \(s\) by \(\pi(s) = a\).</p>
 
-&lt;p&gt;How good a policy is is measured by its value.
-Particularly useful is the concept of an &lt;em&gt;action-value function&lt;/em&gt; \(Q^\pi \) of a policy \(\pi\).
+<p>How good a policy is is measured by its value.
+Particularly useful is the concept of an <em>action-value function</em> \(Q^\pi \) of a policy \(\pi\).
 The action-value function takes as input a state \(s\) and an action \( a\), and returns the expected sum of rewards obtained when first executing action \(a\) in the starting state \(s\), and then acting according to the policy \(\pi\) from there on.
 The action value function is defined as
 \begin{equation}
 Q^{\pi}(s,a) \triangleq \mathbb{E}\left[ R(s_0, a_0) + \sum\limits_{t=1}^{\infty}\gamma^t R(s_t, \pi(s_t)) \middle| s_0 = s, a_0 = a\right].
 \end{equation}
-We can also define the &lt;em&gt;value function&lt;/em&gt; of \(\pi\) in a state \( s\) as
+We can also define the <em>value function</em> of \(\pi\) in a state \( s\) as
 \begin{equation}
 V^{\pi}(s) \triangleq \mathbb{E}\left[ + \sum\limits_{t=0}^{\infty}\gamma^t R(s_t, \pi(s_t)) \middle| s_0 = s\right].
 \end{equation}
-An optimal policy maximizes the value of every state, that is, a policy \(\pi^*\) is optimal if and only if for every policy \( \pi\) and every state \(s\), \(V^{\pi^*}(s) \geq V^{\pi}(s)\).&lt;/p&gt;
+An optimal policy maximizes the value of every state, that is, a policy \(\pi^*\) is optimal if and only if for every policy \( \pi\) and every state \(s\), \(V^{\pi^*}(s) \geq V^{\pi}(s)\).</p>
 
-&lt;p&gt;In a reinforcement learning (RL) setting, The transition model \(T\) and the reward model \(R\) are not known to the agent.
+<p>In a reinforcement learning (RL) setting, The transition model \(T\) and the reward model \(R\) are not known to the agent.
 Instead, the agent interacts with the environment, recording a sequence of states, actions, and rewards.
 In model-free reinforcement learning, the objective is to directly learn the action-value function \(Q^{\pi^*}\) of an optimal policy.
 In model-based RL, estimate models \(\hat{T}\) and \( \hat{R}\) are learned, and then used to compute an optimal policy.
 The estimated models are used as a simulator to compute an optimal policy offline, for which no interaction is required.
-The process of computing an optimal policy from given or estimated models is known as &lt;em&gt;planning&lt;/em&gt;.&lt;/p&gt;
+The process of computing an optimal policy from given or estimated models is known as <em>planning</em>.</p>
 
-&lt;p&gt;A famous example of model-free RL is the deep Q network &lt;a class=&quot;citation&quot; href=&quot;#mnih2013playing&quot;&gt;(Mnih et al., 2013)&lt;/a&gt; that learns to play Atari games.
+<p>A famous example of model-free RL is the deep Q network <a class="citation" href="#mnih2013playing">(Mnih et al., 2013)</a> that learns to play Atari games.
 In this case, the state \(s \) is the last few video frames of the game, and the action-value function \(Q^{\pi}(s,a)\) determines the value of every game action \(a\), such as pushing a button or moving the joystick.
-The best action to select is determined according to the action-value function as \( a_t = \pi(s_t) = \operatorname{arg max}\limits_{a_t} Q^{\pi}(s_t, a_t)\).&lt;/p&gt;
+The best action to select is determined according to the action-value function as \( a_t = \pi(s_t) = \operatorname{arg max}\limits_{a_t} Q^{\pi}(s_t, a_t)\).</p>
 
-&lt;h3 id=&quot;partial-state-observability---partially-observable-mdp-pomdp&quot;&gt;Partial state observability - partially observable MDP (POMDP)&lt;/h3&gt;
-&lt;p&gt;A limitation of the MDP formalization is that the state is assumed to be known to the agent.
+<h3 id="partial-state-observability---partially-observable-mdp-pomdp">Partial state observability - partially observable MDP (POMDP)</h3>
+<p>A limitation of the MDP formalization is that the state is assumed to be known to the agent.
 This is not always the case.
 For example, in some of the Atari games mentioned above, a few video frames may not be enough to determine the velocity of a moving object.
-Arguably the velocity of an object is part of the state, so this means that the game-playing agent cannot actually perceive the state from the given input!&lt;/p&gt;
+Arguably the velocity of an object is part of the state, so this means that the game-playing agent cannot actually perceive the state from the given input!</p>
 
-&lt;p&gt;In such cases, the state is &lt;em&gt;partially observable&lt;/em&gt;.
+<p>In such cases, the state is <em>partially observable</em>.
 The MDP framework can be changed as follows to account for this.
 First, the state will be “hidden” from the agent – it can no longer know what the state \( s\) of the system is.
-Secondly, &lt;em&gt;observations&lt;/em&gt; are added to the framework.
+Secondly, <em>observations</em> are added to the framework.
 Observations are correlated with the true underlying state of the system.
-This is modelled via an &lt;em&gt;observation model&lt;/em&gt; \(O(z', s', a)\) that gives the conditional probability of perceiving observation \( z'\) given the state \(s'\) and the previous action \( a\).
+This is modelled via an <em>observation model</em> \(O(z', s', a)\) that gives the conditional probability of perceiving observation \( z'\) given the state \(s'\) and the previous action \( a\).
 As before, in an RL setting, \(O \) along with the transition model \( T\) and reward model \( R\) are not known to the agent.
 These two changes give the partially observable MDP (POMDP).
-There is a price to pay for the added expressiveness of the POMDP model, however, as we shall see next.&lt;/p&gt;
+There is a price to pay for the added expressiveness of the POMDP model, however, as we shall see next.</p>
 
-&lt;figure&gt;
-    &lt;a href=&quot;/assets/images/research/pomdp.png&quot;&gt;&lt;img src=&quot;/assets/images/research/pomdp.png&quot; /&gt;&lt;/a&gt;
-    &lt;figcaption&gt;Decision-making process in a POMDP&lt;/figcaption&gt;
-&lt;/figure&gt;
+<figure>
+    <a href="/assets/images/research/pomdp.png"><img src="/assets/images/research/pomdp.png" /></a>
+    <figcaption>Decision-making process in a POMDP</figcaption>
+</figure>
 
-&lt;p&gt;As the state is no longer observable, the experiences of the agent are now sequences of actions, rewards and observations.
+<p>As the state is no longer observable, the experiences of the agent are now sequences of actions, rewards and observations.
 That is, an experience of length-\(t \) is a sequence \(h_t = (a_0, r_0, z_1, a_1, r_1, z_2, \ldots, a_{t-1}, z_t ) \).
-The sequence \(h_t\) is also called a &lt;em&gt;history&lt;/em&gt; of actions and observations.&lt;/p&gt;
+The sequence \(h_t\) is also called a <em>history</em> of actions and observations.</p>
 
-&lt;p&gt;The policy \(\pi\) also has to be changed: since the agent does not know \( s\), a policy of the form \(\pi(s) = a\) is no longer viable.
+<p>The policy \(\pi\) also has to be changed: since the agent does not know \( s\), a policy of the form \(\pi(s) = a\) is no longer viable.
 Instead, the policy should map histories to the next action: \( \pi(h_t) = a_t \).
 This presents a problem.
 As time goes on, the size of the history \(h_t \) increases.
-Soon, it will become infeasible to store the history, let alone represent a policy function that maps any possible history to an action!&lt;/p&gt;
+Soon, it will become infeasible to store the history, let alone represent a policy function that maps any possible history to an action!</p>
 
-&lt;p&gt;The solution to the problem is to summarize the history \(h_t \) into some fixed-size representation \( b_t\).&lt;/p&gt;
+<p>The solution to the problem is to summarize the history \(h_t \) into some fixed-size representation \( b_t\).</p>
 
-&lt;p&gt;In model-free RL, this is nowadays often done by applying a recurrent neural network such as a long-short-term memory (LSTM) unit.
+<p>In model-free RL, this is nowadays often done by applying a recurrent neural network such as a long-short-term memory (LSTM) unit.
 The internal state of the LSTM is used as the summary \(b_t\).
 The LSTM \(f\) is then used to update the internal representation given a new action \(a_t\) and a new  observation \(z_{t+1}\): \(b_{t+1} = f(b_t, a_t, z_{t+1})\).
-In model-based RL and planning, the summary \(b_t\) is defined as the &lt;em&gt;belief state&lt;/em&gt;, a probability over the state \(s_t\) given the history \(h_t\): \(b_t(s_t) \triangleq \mathbb{P}(s_t \mid a_0, z_1, \ldots, a_{t-1}, z_t)\).
+In model-based RL and planning, the summary \(b_t\) is defined as the <em>belief state</em>, a probability over the state \(s_t\) given the history \(h_t\): \(b_t(s_t) \triangleq \mathbb{P}(s_t \mid a_0, z_1, \ldots, a_{t-1}, z_t)\).
 The estimated models \( \hat{T}\) and \( \hat{O}\) are applied to compute the updated \(b_{t+1}\) by applying Bayesian filtering.
 Given the previous belief state \(b_t\) and a new action \(a_t\) and a new  observation \(z_{t+1}\), the updated belief for state \(s_{t+1}\) is
 \begin{equation}
 b_{t+1}(s_{t+1}) \triangleq \eta \hat{O}(z_{t+1}, s_{t+1}, a_t) \sum\limits_{s_t}\hat{T}(s_{t+1},a_t,s_t)b_t(s_t),
 \end{equation}
-where \(\eta\) is a normalization factor.&lt;/p&gt;
+where \(\eta\) is a normalization factor.</p>
 
-&lt;p&gt;Since \(b_t\) is now a fixed-size summary of the history, it is possible to represent the action-value function \(Q^{\pi}(b_t, a_t)\), and apply it much in the same way as in the MDP case to select actions.
-A good example of this is the deep recurrent Q network (DRQN) &lt;a class=&quot;citation&quot; href=&quot;#hausknecht2015deep&quot;&gt;(Hausknecht &amp;amp; Stone, 2015)&lt;/a&gt;, that was again applied to play Atari games.
-We also applied the DRQN to the problem of active visual object search in &lt;a class=&quot;citation&quot; href=&quot;#Schmid_IROS2019&quot;&gt;(Schmid et al., 2019)&lt;/a&gt;.
+<p>Since \(b_t\) is now a fixed-size summary of the history, it is possible to represent the action-value function \(Q^{\pi}(b_t, a_t)\), and apply it much in the same way as in the MDP case to select actions.
+A good example of this is the deep recurrent Q network (DRQN) <a class="citation" href="#hausknecht2015deep">(Hausknecht &amp; Stone, 2015)</a>, that was again applied to play Atari games.
+We also applied the DRQN to the problem of active visual object search in <a class="citation" href="#Schmid_IROS2019">(Schmid et al., 2019)</a>.
 The hidden state is the location of the target object, while the agent’s observations are the images it can see from its current location.
 The actions of the agent are the different movement actions, and some special actions that declare the object to be found (active termination).
 Positive rewards are accrued for successfully finding the target object, while negative rewards are accumulated for false declarations and movements.
-&lt;!-- [Here's a video](assets/videos/schmid-lauri-frintrop-iros-2019-video.mp4){:target=&quot;_blank&quot;} that shows how the object search task proceeds. --&gt;&lt;/p&gt;
-&lt;figure&gt;
-    &lt;a href=&quot;/assets/images/research/subtasks.png&quot;&gt;&lt;img src=&quot;/assets/images/research/subtasks.png&quot; /&gt;&lt;/a&gt;
-    &lt;figcaption&gt;Active visual object search can be formalized as a POMDP.&lt;/figcaption&gt;
-&lt;/figure&gt;
+<!-- [Here's a video](assets/videos/schmid-lauri-frintrop-iros-2019-video.mp4){:target="_blank"} that shows how the object search task proceeds. --></p>
+<figure>
+    <a href="/assets/images/research/subtasks.png"><img src="/assets/images/research/subtasks.png" /></a>
+    <figcaption>Active visual object search can be formalized as a POMDP.</figcaption>
+</figure>
 
-&lt;h3 id=&quot;multiple-agents---decentralized-pomdp-dec-pomdp&quot;&gt;Multiple agents - decentralized POMDP (Dec-POMDP)&lt;/h3&gt;
-&lt;p&gt;Now we have gone from the MDP to the POMDP by hiding the state from the agent, and by adding observations.
+<h3 id="multiple-agents---decentralized-pomdp-dec-pomdp">Multiple agents - decentralized POMDP (Dec-POMDP)</h3>
+<p>Now we have gone from the MDP to the POMDP by hiding the state from the agent, and by adding observations.
 The decentralized POMDP (Dec-POMDP) is a generalization of a POMDP with multiple cooperating agents.
 For simplicity, I will consider here the case with two agents, but the Dec-POMDP is applicable to any finite number \(n\) of agents.
-For an in-depth introduction to Dec-POMDPs, I recommend the book by Oliehoek and Amato &lt;a class=&quot;citation&quot; href=&quot;#Oliehoek2016&quot;&gt;(Oliehoek &amp;amp; Amato, 2016)&lt;/a&gt;.&lt;/p&gt;
+For an in-depth introduction to Dec-POMDPs, I recommend the book by Oliehoek and Amato <a class="citation" href="#Oliehoek2016">(Oliehoek &amp; Amato, 2016)</a>.</p>
 
-&lt;p&gt;Both agents are independent in the sense that they take their own &lt;em&gt;individual&lt;/em&gt; actions, and perceive their own &lt;em&gt;individual&lt;/em&gt; observations.
-Therefore, they experience an &lt;em&gt;individual&lt;/em&gt; history, and have &lt;em&gt;individual&lt;/em&gt; policies.
-The system state transitions, observations, and rewards however still depend on the &lt;em&gt;joint&lt;/em&gt; actions of the agents.
+<p>Both agents are independent in the sense that they take their own <em>individual</em> actions, and perceive their own <em>individual</em> observations.
+Therefore, they experience an <em>individual</em> history, and have <em>individual</em> policies.
+The system state transitions, observations, and rewards however still depend on the <em>joint</em> actions of the agents.
 A joint action is a tuple \(a_t = \langle a_{1,t}, a_{2,t}\rangle\) of both agents’ individual actions \(a_{i,t}\).
 The transition model is defined on these joint actions, that is,
 \begin{equation}
@@ -169,69 +476,69 @@ The reward model is defined
 \begin{equation}
 R(s_t, a_t) = R(s_t, a_{1,t}, a_{2,t}),
 \end{equation}
-determining the reward of taking joint action \(a_t = \langle a_{1,t}, a_{2,t}\rangle\) in state \(s_t\).&lt;/p&gt;
+determining the reward of taking joint action \(a_t = \langle a_{1,t}, a_{2,t}\rangle\) in state \(s_t\).</p>
 
-&lt;p&gt;One agent does not know precisely how the other agent acted, or what the other agent perceived.
+<p>One agent does not know precisely how the other agent acted, or what the other agent perceived.
 Each agent has its own individual history \(h_{i,t} = (a_{i,0}, z_{i,1}, \ldots, a_{i,t-1}, z_{i,t})\).
 Therefore, the individual policy of each agent maps individual histories to actions: \( \pi_{i}(h_{i,t}) = a_{i,t}\).
-A &lt;em&gt;joint policy&lt;/em&gt; is a tuple of individual policies, that is \( \pi = \langle \pi_1, \pi_2 \rangle\).
+A <em>joint policy</em> is a tuple of individual policies, that is \( \pi = \langle \pi_1, \pi_2 \rangle\).
 Because information is not shared, it is not possible anymore to come up with a single global summary \(b_t\) of the hidden state as in the POMDP.
-Instead, each agent can either remember its individual history, or create an individual summary \( b_{i,t}\) of it.&lt;/p&gt;
+Instead, each agent can either remember its individual history, or create an individual summary \( b_{i,t}\) of it.</p>
 
-&lt;p&gt;The paradigm of centralized planning, decentralized execution is assumed in Dec-POMDPs.
+<p>The paradigm of centralized planning, decentralized execution is assumed in Dec-POMDPs.
 Individual policies of each agent are designed in a centralized manner, but they can be executed by each agent independently, without knowing what the other agents are doing.
-This means that we can reason about the &lt;em&gt;joint summary&lt;/em&gt; \(b_t\) of the agents during planning, even if no individual agent has the capability to compute this summary at execution-time.
-This reasoning is the key part of multi-agent active perception modelled as a Dec-POMDP.&lt;/p&gt;
+This means that we can reason about the <em>joint summary</em> \(b_t\) of the agents during planning, even if no individual agent has the capability to compute this summary at execution-time.
+This reasoning is the key part of multi-agent active perception modelled as a Dec-POMDP.</p>
 
-&lt;figure&gt;
-    &lt;a href=&quot;/assets/images/research/decpomdp.png&quot;&gt;&lt;img src=&quot;/assets/images/research/decpomdp.png&quot; /&gt;&lt;/a&gt;
-    &lt;figcaption&gt;Decision-making process in a Dec-POMDP&lt;/figcaption&gt;
-&lt;/figure&gt;
+<figure>
+    <a href="/assets/images/research/decpomdp.png"><img src="/assets/images/research/decpomdp.png" /></a>
+    <figcaption>Decision-making process in a Dec-POMDP</figcaption>
+</figure>
 
-&lt;h2 id=&quot;multi-agent-active-perception&quot;&gt;Multi-agent active perception&lt;/h2&gt;
-&lt;p&gt;In some active perception problems there is a clear state-based objective.
+<h2 id="multi-agent-active-perception">Multi-agent active perception</h2>
+<p>In some active perception problems there is a clear state-based objective.
 These types of problems can be thought of as active hypothesis testing.
 For example in the active visual object search example discussed earlier, there is a set of competing hypotheses (possible locations of the target object), and the agent is trying to discriminate between these objectives.
-The agent is rewarded for successfully declaring the correct hypothesis, and penalized for mistakes or taking too much time.&lt;/p&gt;
+The agent is rewarded for successfully declaring the correct hypothesis, and penalized for mistakes or taking too much time.</p>
 
-&lt;p&gt;However, some active perception problems are more open-ended, or curiosity driven.
+<p>However, some active perception problems are more open-ended, or curiosity driven.
 Consider for example a monitoring task, like the task of monitoring ocean currents.
 There is no state-based objective or desirable state to reach – the currents are what they are and change over time – so there is no right hypothesis to call.
 Instead, the objective would be to reduce uncertainty about the hidden state in the problem.
-These types of active perception problems are exactly the type we consider in a multi-agent setting in &lt;a class=&quot;citation&quot; href=&quot;#Lauri_JAAMAS2020&quot;&gt;(Lauri et al., 2020; Lauri et al., 2019)&lt;/a&gt;.&lt;/p&gt;
+These types of active perception problems are exactly the type we consider in a multi-agent setting in <a class="citation" href="#Lauri_JAAMAS2020">(Lauri et al., 2020; Lauri et al., 2019)</a>.</p>
 
-&lt;p&gt;We modify the reward function of the problem, so that it is not dependent on the state, but rather on &lt;em&gt;what the agents know about the state&lt;/em&gt;, that is, the summary or belief state \(b_t\) discussed earlier.
+<p>We modify the reward function of the problem, so that it is not dependent on the state, but rather on <em>what the agents know about the state</em>, that is, the summary or belief state \(b_t\) discussed earlier.
 Uncertainty of a belief state can be quantified by using the information entropy.
 Recall the belief state \(b_t\) defined as a probability over possible hidden state \(s_t\).
 The entropy of the belief state is
 \begin{equation}
 H(b_t) \triangleq -\sum\limits_{s_t}b_t(s_t) \ln b_t(s_t).
 \end{equation}
-Applying the negative entropy as a reward function makes the agents prefer policies that are likely to lead to a belief state with low uncertainty.&lt;/p&gt;
+Applying the negative entropy as a reward function makes the agents prefer policies that are likely to lead to a belief state with low uncertainty.</p>
 
-&lt;p&gt;We were able to derive some useful theoretical results for these types of active perception problems in the multi-agent setting.
+<p>We were able to derive some useful theoretical results for these types of active perception problems in the multi-agent setting.
 We established that the action-value function \(Q^{\pi}(b_t,a_t)\) and the value function \(V^{\pi}(b_t)\) of any joint policy \( \pi \) are convex functions of the belief state \(b_t\).
-This lead to a practical algorithm for planning policies for active perception.&lt;/p&gt;
+This lead to a practical algorithm for planning policies for active perception.</p>
 
-&lt;p&gt;For our algorithm, we chose to represent individual policies as finite state controllers, or policy graphs, as shown in the figure below.
+<p>For our algorithm, we chose to represent individual policies as finite state controllers, or policy graphs, as shown in the figure below.
 Each agent starts executing a fixed-size policy graph from an initial controller node shown on the left hand side of the respective figures.
 Then, the agent takes the action read from the table for the controller node.
 The individual observation perceived by the agent then determines what is the next controller node it transitions to: this is modelled by the edges of the policy graph.
-This approach produces compact and easily understandable policies, while also limiting the search space.&lt;/p&gt;
+This approach produces compact and easily understandable policies, while also limiting the search space.</p>
 
-&lt;figure class=&quot;half&quot;&gt;
-    &lt;a href=&quot;/assets/images/active-perception/localpolicy_agent1.png&quot;&gt;&lt;img src=&quot;/assets/images/active-perception/localpolicy_agent1.png&quot; /&gt;&lt;/a&gt;
-    &lt;a href=&quot;/assets/images/active-perception/localpolicy_agent2.png&quot;&gt;&lt;img src=&quot;/assets/images/active-perception/localpolicy_agent2.png&quot; /&gt;&lt;/a&gt;
-    &lt;figcaption&gt;Left: Individual policy of agent 1. Right: Individual policy of agent 2.&lt;/figcaption&gt;
-&lt;/figure&gt;
+<figure class="half">
+    <a href="/assets/images/active-perception/localpolicy_agent1.png"><img src="/assets/images/active-perception/localpolicy_agent1.png" /></a>
+    <a href="/assets/images/active-perception/localpolicy_agent2.png"><img src="/assets/images/active-perception/localpolicy_agent2.png" /></a>
+    <figcaption>Left: Individual policy of agent 1. Right: Individual policy of agent 2.</figcaption>
+</figure>
 
-&lt;p&gt;The core idea of our planning algorithm is to iteratively improve the policy graphs.
+<p>The core idea of our planning algorithm is to iteratively improve the policy graphs.
 Improvements are done by 1) changing the individual action to be taken at a controller node, and 2) changing the out-edge configuration of a controller node.
 If we are improving a node, say, \(q_1^1\), we answer questions such as: “if agent 1 is in controller node \(q_1^1 \), what are the probabilities of the possible controller nodes where agent 2 is?”.
 Then, we also consider the belief states in a similar manner: “if agent 1 is in controller node \(q_1^1\) and agent 2 is in controller node \(q_2^2 \), what are the possible belief states and what are their relative likelihoods?”.
-Using this information, we are able to calculate if changing the individual action or where out-edges are connected to at node \(q_1^1\) would result in a greater expected value for the joint policy.&lt;/p&gt;
+Using this information, we are able to calculate if changing the individual action or where out-edges are connected to at node \(q_1^1\) would result in a greater expected value for the joint policy.</p>
 
-&lt;p&gt;We applied the algorithm to two multi-agent active perception problems.
+<p>We applied the algorithm to two multi-agent active perception problems.
 In one of the problems, two micro air vehicles (MAVs) are tracking a moving target.
 The target is either friendly or hostile.
 A hostile target will tend to move quickly in order to avoid detection, while a friendly target tends to move more slowly.
@@ -240,19 +547,19 @@ The camera is reliable on short ranges, but does not work well with a longer ran
 The radar in turn works well with long ranges to the target, but if both MAVs use their radar simultaneously the accuracy suffers due to interference.
 The camera and radar measurements only provide information about the location of the target.
 The type (friendly or hostile) of the target must be inferred from a longer sequence of observations, tracking the behaviour of the target.
-In earlier work &lt;a class=&quot;citation&quot; href=&quot;#Lauri_ICRA2017&quot;&gt;(Lauri et al., 2017)&lt;/a&gt;, we applied a similar model to a real-world problem of two robots tracking a target, as shown in the image below.&lt;/p&gt;
-&lt;figure&gt;
-    &lt;a href=&quot;/assets/images/active-perception/experiment.jpg&quot;&gt;&lt;img src=&quot;/assets/images/active-perception/experiment.jpg&quot; /&gt;&lt;/a&gt;
-    &lt;figcaption&gt;Two robots tracking a moving target.&lt;/figcaption&gt;
-&lt;/figure&gt;
+In earlier work <a class="citation" href="#Lauri_ICRA2017">(Lauri et al., 2017)</a>, we applied a similar model to a real-world problem of two robots tracking a target, as shown in the image below.</p>
+<figure>
+    <a href="/assets/images/active-perception/experiment.jpg"><img src="/assets/images/active-perception/experiment.jpg" /></a>
+    <figcaption>Two robots tracking a moving target.</figcaption>
+</figure>
 
-&lt;p&gt;Using our proposed algorithm, we were able to find efficient and compact individual tracking policies .
+<p>Using our proposed algorithm, we were able to find efficient and compact individual tracking policies .
 By using particle filtering to track the belief state, we could extend the algorithm to the case where the hidden state \(s_t\) is continuous, while the actions and observations are discrete.
-We demonstrated this variant of the algorithm in a signal source localization task in &lt;a class=&quot;citation&quot; href=&quot;#Lauri_JAAMAS2020&quot;&gt;(Lauri et al., 2020)&lt;/a&gt;.&lt;/p&gt;
+We demonstrated this variant of the algorithm in a signal source localization task in <a class="citation" href="#Lauri_JAAMAS2020">(Lauri et al., 2020)</a>.</p>
 
-&lt;p&gt;If you are interested in trying out this algorithm for yourself, either to solve multi-agent active perception problems or regular Dec-POMDPs, you can find the code &lt;a href=&quot;https://github.com/laurimi/npgi&quot;&gt;on Github&lt;/a&gt;.&lt;/p&gt;
+<p>If you are interested in trying out this algorithm for yourself, either to solve multi-agent active perception problems or regular Dec-POMDPs, you can find the code <a href="https://github.com/laurimi/npgi">on Github</a>.</p>
 
-&lt;p&gt;The limitations of our algorithm are discussed in &lt;a class=&quot;citation&quot; href=&quot;#Lauri_JAAMAS2020&quot;&gt;(Lauri et al., 2020)&lt;/a&gt;.
+<p>The limitations of our algorithm are discussed in <a class="citation" href="#Lauri_JAAMAS2020">(Lauri et al., 2020)</a>.
 Firstly, at each improvement round we need to compute all belief states reachable under the current policy.
 This requires a lot of memory, which will limit the scalability of the algorithm.
 Secondly, the size of the policy graph has to be fixed beforehand.
@@ -260,37 +567,37 @@ Choosing a too small policy graph might prevent finding good policies, while usi
 Finally, because the reward function depends on the belief state and not the state, we have to use a Bayes filter to compute belief states at planning time.
 As a result, the scale of the problems that can currently be solved is not quite up to par with state-of-the-art solvers for Dec-POMDPs with state-based rewards.
 The algorithm we proposed is heuristic – although it performed well experimentally, it does not provide any performance guarantees compared to an optimal solution.
-These are among some of the issues we hope to address in future work.&lt;/p&gt;
+These are among some of the issues we hope to address in future work.</p>
 
-&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;This post gives a brief overview of different variants of Markov decision processes and how they are used as underlying formalisms for reinforcement learning and planning.
+<h2 id="conclusion">Conclusion</h2>
+<p>This post gives a brief overview of different variants of Markov decision processes and how they are used as underlying formalisms for reinforcement learning and planning.
 In active perception problems, an agent or a team of agents perceive the world to achieve some goal state or simply to reduce uncertainty in their knowledge of the state.
 Using a decentralized partially observable Markov decision process (Dec-POMDP) as an underlying framework, it is possible to define very general multi-agent active perception problems.
-No implicit information sharing is assumed, the underlying state is only partially observable, while the system undergoes stochastic state transitions.&lt;/p&gt;
+No implicit information sharing is assumed, the underlying state is only partially observable, while the system undergoes stochastic state transitions.</p>
 
-&lt;p&gt;Our recent research provides some theoretical grounding for multi-agent active perception as a Dec-POMDP, and proposes the first heuristic algorithm for solving such problems.
+<p>Our recent research provides some theoretical grounding for multi-agent active perception as a Dec-POMDP, and proposes the first heuristic algorithm for solving such problems.
 As discussed above, the approach is not without limitations.
 I believe there are many further properties of Dec-POMDPs for multi-agent active perception to be discovered.
-These will hopefully lead to even more powerful solution algorithms as well.&lt;/p&gt;
+These will hopefully lead to even more powerful solution algorithms as well.</p>
 
-&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+<h2 id="references">References</h2>
 
-&lt;ol class=&quot;bibliography&quot;&gt;&lt;li&gt;&lt;div class=&quot;text-justify&quot;&gt;&lt;span id=&quot;Lauri_JAAMAS2020&quot;&gt;&lt;b&gt;Lauri, M.&lt;/b&gt;, Pajarinen, J., &amp;amp; Peters, J. (2020). Multi-agent active information gathering in discrete and continuous-state decentralized POMDPs by policy graph improvement. &lt;i&gt;Autonomous Agents and Multi-Agent Systems&lt;/i&gt;, &lt;i&gt;34&lt;/i&gt;(42). https://doi.org/10.1007/S10458-020-09467-6&lt;/span&gt;&lt;/div&gt;
-
-
-
-    [&lt;a target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; href=&quot;http://doi.org/10.1007/S10458-020-09467-6&quot;&gt;DOI&lt;/a&gt;]
+<ol class="bibliography"><li><div class="text-justify"><span id="Lauri_JAAMAS2020"><b>Lauri, M.</b>, Pajarinen, J., &amp; Peters, J. (2020). Multi-agent active information gathering in discrete and continuous-state decentralized POMDPs by policy graph improvement. <i>Autonomous Agents and Multi-Agent Systems</i>, <i>34</i>(42). https://doi.org/10.1007/S10458-020-09467-6</span></div>
 
 
 
-	[&lt;a target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; href=&quot;https://github.com/laurimi/npgi&quot;&gt;Code&lt;/a&gt;]
+    [<a target="_blank" rel="noopener noreferrer" href="http://doi.org/10.1007/S10458-020-09467-6">DOI</a>]
 
 
 
-[&lt;a onclick=&quot;toggleBibtexLauri_JAAMAS2020()&quot;&gt;Show/hide BibTeX&lt;/a&gt;]
-[&lt;a onclick=&quot;copyBibtexLauri_JAAMAS2020()&quot;&gt;Copy BibTeX to clipboard&lt;/a&gt;]
-&lt;div id=&quot;aLauri_JAAMAS2020&quot; style=&quot;display: none;&quot;&gt;
-&lt;pre id=&quot;bLauri_JAAMAS2020&quot;&gt;@inproceedings{Lauri_JAAMAS2020,
+	[<a target="_blank" rel="noopener noreferrer" href="https://github.com/laurimi/npgi">Code</a>]
+
+
+
+[<a onclick="toggleBibtexLauri_JAAMAS2020()">Show/hide BibTeX</a>]
+[<a onclick="copyBibtexLauri_JAAMAS2020()">Copy BibTeX to clipboard</a>]
+<div id="aLauri_JAAMAS2020" style="display: none;">
+<pre id="bLauri_JAAMAS2020">@inproceedings{Lauri_JAAMAS2020,
   author = {Lauri, Mikko and Pajarinen, Joni and Peters, Jan},
   title = {Multi-agent active information gathering in discrete and continuous-state decentralized POMDPs by policy graph improvement},
   year = {2020},
@@ -300,10 +607,10 @@ These will hopefully lead to even more powerful solution algorithms as well.&lt;
   journal = {Autonomous Agents and Multi-Agent Systems},
   codelink = {https://github.com/laurimi/npgi}
 }
-&lt;/pre&gt;
-&lt;/div&gt;
+</pre>
+</div>
 
-&lt;script&gt;
+<script>
 function toggleBibtexLauri_JAAMAS2020(parameter) {
     var x= document.getElementById('aLauri_JAAMAS2020');
     if (x.style.display === 'none') {
@@ -315,7 +622,7 @@ function toggleBibtexLauri_JAAMAS2020(parameter) {
 
 function copyBibtexLauri_JAAMAS2020(parameter) {
 	// https://stackoverflow.com/a/30810322/5471520
-	var textArea = document.createElement(&quot;textarea&quot;);
+	var textArea = document.createElement("textarea");
 	//
 	// *** This styling is an extra step which is likely not required. ***
 	//
@@ -369,25 +676,25 @@ function copyBibtexLauri_JAAMAS2020(parameter) {
 
 	document.body.removeChild(textArea);
 } 
-&lt;/script&gt;&lt;/li&gt;
-&lt;li&gt;&lt;div class=&quot;text-justify&quot;&gt;&lt;span id=&quot;Lauri_AAMAS2019&quot;&gt;&lt;b&gt;Lauri, M.&lt;/b&gt;, Pajarinen, J., &amp;amp; Peters, J. (2019). Information Gathering in Decentralized POMDPs by Policy Graph Improvement. &lt;i&gt;Proceedings of the 18th International Conference on Autonomous Agents and Multiagent Systems (AAMAS)&lt;/i&gt;, 1143–1151. https://dl.acm.org/doi/abs/10.5555/3306127.3331815&lt;/span&gt;&lt;/div&gt;
+</script></li>
+<li><div class="text-justify"><span id="Lauri_AAMAS2019"><b>Lauri, M.</b>, Pajarinen, J., &amp; Peters, J. (2019). Information Gathering in Decentralized POMDPs by Policy Graph Improvement. <i>Proceedings of the 18th International Conference on Autonomous Agents and Multiagent Systems (AAMAS)</i>, 1143–1151. https://dl.acm.org/doi/abs/10.5555/3306127.3331815</span></div>
 
 
-	[&lt;a target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; href=&quot;https://dl.acm.org/doi/abs/10.5555/3306127.3331815&quot;&gt;URL&lt;/a&gt;]
-
-
-
-	[&lt;a target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; href=&quot;https://arxiv.org/abs/1902.09840&quot;&gt;arXiv&lt;/a&gt;]
-
-
-	[&lt;a target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; href=&quot;https://github.com/laurimi/npgi&quot;&gt;Code&lt;/a&gt;]
+	[<a target="_blank" rel="noopener noreferrer" href="https://dl.acm.org/doi/abs/10.5555/3306127.3331815">URL</a>]
 
 
 
-[&lt;a onclick=&quot;toggleBibtexLauri_AAMAS2019()&quot;&gt;Show/hide BibTeX&lt;/a&gt;]
-[&lt;a onclick=&quot;copyBibtexLauri_AAMAS2019()&quot;&gt;Copy BibTeX to clipboard&lt;/a&gt;]
-&lt;div id=&quot;aLauri_AAMAS2019&quot; style=&quot;display: none;&quot;&gt;
-&lt;pre id=&quot;bLauri_AAMAS2019&quot;&gt;@inproceedings{Lauri_AAMAS2019,
+	[<a target="_blank" rel="noopener noreferrer" href="https://arxiv.org/abs/1902.09840">arXiv</a>]
+
+
+	[<a target="_blank" rel="noopener noreferrer" href="https://github.com/laurimi/npgi">Code</a>]
+
+
+
+[<a onclick="toggleBibtexLauri_AAMAS2019()">Show/hide BibTeX</a>]
+[<a onclick="copyBibtexLauri_AAMAS2019()">Copy BibTeX to clipboard</a>]
+<div id="aLauri_AAMAS2019" style="display: none;">
+<pre id="bLauri_AAMAS2019">@inproceedings{Lauri_AAMAS2019,
   author = {Lauri, Mikko and Pajarinen, Joni and Peters, Jan},
   title = {Information Gathering in Decentralized POMDPs by Policy Graph Improvement},
   year = {2019},
@@ -405,10 +712,10 @@ function copyBibtexLauri_JAAMAS2020(parameter) {
   eprint = {1902.09840},
   url = {https://dl.acm.org/doi/abs/10.5555/3306127.3331815}
 }
-&lt;/pre&gt;
-&lt;/div&gt;
+</pre>
+</div>
 
-&lt;script&gt;
+<script>
 function toggleBibtexLauri_AAMAS2019(parameter) {
     var x= document.getElementById('aLauri_AAMAS2019');
     if (x.style.display === 'none') {
@@ -420,7 +727,7 @@ function toggleBibtexLauri_AAMAS2019(parameter) {
 
 function copyBibtexLauri_AAMAS2019(parameter) {
 	// https://stackoverflow.com/a/30810322/5471520
-	var textArea = document.createElement(&quot;textarea&quot;);
+	var textArea = document.createElement("textarea");
 	//
 	// *** This styling is an extra step which is likely not required. ***
 	//
@@ -474,8 +781,8 @@ function copyBibtexLauri_AAMAS2019(parameter) {
 
 	document.body.removeChild(textArea);
 } 
-&lt;/script&gt;&lt;/li&gt;
-&lt;li&gt;&lt;div class=&quot;text-justify&quot;&gt;&lt;span id=&quot;Bajcsy_Revisiting&quot;&gt;Bajcsy, R., Aloimonos, Y., &amp;amp; Tsotsos, J. K. (2018). Revisiting active perception. &lt;i&gt;Autonomous Robots&lt;/i&gt;, &lt;i&gt;42&lt;/i&gt;(2), 177–196.&lt;/span&gt;&lt;/div&gt;
+</script></li>
+<li><div class="text-justify"><span id="Bajcsy_Revisiting">Bajcsy, R., Aloimonos, Y., &amp; Tsotsos, J. K. (2018). Revisiting active perception. <i>Autonomous Robots</i>, <i>42</i>(2), 177–196.</span></div>
 
 
 
@@ -483,10 +790,10 @@ function copyBibtexLauri_AAMAS2019(parameter) {
 
 
 
-[&lt;a onclick=&quot;toggleBibtexBajcsy_Revisiting()&quot;&gt;Show/hide BibTeX&lt;/a&gt;]
-[&lt;a onclick=&quot;copyBibtexBajcsy_Revisiting()&quot;&gt;Copy BibTeX to clipboard&lt;/a&gt;]
-&lt;div id=&quot;aBajcsy_Revisiting&quot; style=&quot;display: none;&quot;&gt;
-&lt;pre id=&quot;bBajcsy_Revisiting&quot;&gt;@article{Bajcsy_Revisiting,
+[<a onclick="toggleBibtexBajcsy_Revisiting()">Show/hide BibTeX</a>]
+[<a onclick="copyBibtexBajcsy_Revisiting()">Copy BibTeX to clipboard</a>]
+<div id="aBajcsy_Revisiting" style="display: none;">
+<pre id="bBajcsy_Revisiting">@article{Bajcsy_Revisiting,
   title = {Revisiting active perception},
   author = {Bajcsy, Ruzena and Aloimonos, Yiannis and Tsotsos, John K},
   journal = {Autonomous Robots},
@@ -495,10 +802,10 @@ function copyBibtexLauri_AAMAS2019(parameter) {
   pages = {177--196},
   year = {2018}
 }
-&lt;/pre&gt;
-&lt;/div&gt;
+</pre>
+</div>
 
-&lt;script&gt;
+<script>
 function toggleBibtexBajcsy_Revisiting(parameter) {
     var x= document.getElementById('aBajcsy_Revisiting');
     if (x.style.display === 'none') {
@@ -510,7 +817,7 @@ function toggleBibtexBajcsy_Revisiting(parameter) {
 
 function copyBibtexBajcsy_Revisiting(parameter) {
 	// https://stackoverflow.com/a/30810322/5471520
-	var textArea = document.createElement(&quot;textarea&quot;);
+	var textArea = document.createElement("textarea");
 	//
 	// *** This styling is an extra step which is likely not required. ***
 	//
@@ -564,8 +871,8 @@ function copyBibtexBajcsy_Revisiting(parameter) {
 
 	document.body.removeChild(textArea);
 } 
-&lt;/script&gt;&lt;/li&gt;
-&lt;li&gt;&lt;div class=&quot;text-justify&quot;&gt;&lt;span id=&quot;mnih2013playing&quot;&gt;Mnih, V., Kavukcuoglu, K., Silver, D., Graves, A., Antonoglou, I., Wierstra, D., &amp;amp; Riedmiller, M. (2013). Playing atari with deep reinforcement learning. &lt;i&gt;ArXiv Preprint ArXiv:1312.5602&lt;/i&gt;.&lt;/span&gt;&lt;/div&gt;
+</script></li>
+<li><div class="text-justify"><span id="mnih2013playing">Mnih, V., Kavukcuoglu, K., Silver, D., Graves, A., Antonoglou, I., Wierstra, D., &amp; Riedmiller, M. (2013). Playing atari with deep reinforcement learning. <i>ArXiv Preprint ArXiv:1312.5602</i>.</span></div>
 
 
 
@@ -573,19 +880,19 @@ function copyBibtexBajcsy_Revisiting(parameter) {
 
 
 
-[&lt;a onclick=&quot;toggleBibtexmnih2013playing()&quot;&gt;Show/hide BibTeX&lt;/a&gt;]
-[&lt;a onclick=&quot;copyBibtexmnih2013playing()&quot;&gt;Copy BibTeX to clipboard&lt;/a&gt;]
-&lt;div id=&quot;amnih2013playing&quot; style=&quot;display: none;&quot;&gt;
-&lt;pre id=&quot;bmnih2013playing&quot;&gt;@article{mnih2013playing,
+[<a onclick="toggleBibtexmnih2013playing()">Show/hide BibTeX</a>]
+[<a onclick="copyBibtexmnih2013playing()">Copy BibTeX to clipboard</a>]
+<div id="amnih2013playing" style="display: none;">
+<pre id="bmnih2013playing">@article{mnih2013playing,
   title = {Playing atari with deep reinforcement learning},
   author = {Mnih, Volodymyr and Kavukcuoglu, Koray and Silver, David and Graves, Alex and Antonoglou, Ioannis and Wierstra, Daan and Riedmiller, Martin},
   journal = {arXiv preprint arXiv:1312.5602},
   year = {2013}
 }
-&lt;/pre&gt;
-&lt;/div&gt;
+</pre>
+</div>
 
-&lt;script&gt;
+<script>
 function toggleBibtexmnih2013playing(parameter) {
     var x= document.getElementById('amnih2013playing');
     if (x.style.display === 'none') {
@@ -597,7 +904,7 @@ function toggleBibtexmnih2013playing(parameter) {
 
 function copyBibtexmnih2013playing(parameter) {
 	// https://stackoverflow.com/a/30810322/5471520
-	var textArea = document.createElement(&quot;textarea&quot;);
+	var textArea = document.createElement("textarea");
 	//
 	// *** This styling is an extra step which is likely not required. ***
 	//
@@ -651,8 +958,8 @@ function copyBibtexmnih2013playing(parameter) {
 
 	document.body.removeChild(textArea);
 } 
-&lt;/script&gt;&lt;/li&gt;
-&lt;li&gt;&lt;div class=&quot;text-justify&quot;&gt;&lt;span id=&quot;hausknecht2015deep&quot;&gt;Hausknecht, M., &amp;amp; Stone, P. (2015). Deep recurrent Q-learning for partially observable MDPs. &lt;i&gt;2015 AAAI Fall Symposium Series&lt;/i&gt;.&lt;/span&gt;&lt;/div&gt;
+</script></li>
+<li><div class="text-justify"><span id="hausknecht2015deep">Hausknecht, M., &amp; Stone, P. (2015). Deep recurrent Q-learning for partially observable MDPs. <i>2015 AAAI Fall Symposium Series</i>.</span></div>
 
 
 
@@ -660,19 +967,19 @@ function copyBibtexmnih2013playing(parameter) {
 
 
 
-[&lt;a onclick=&quot;toggleBibtexhausknecht2015deep()&quot;&gt;Show/hide BibTeX&lt;/a&gt;]
-[&lt;a onclick=&quot;copyBibtexhausknecht2015deep()&quot;&gt;Copy BibTeX to clipboard&lt;/a&gt;]
-&lt;div id=&quot;ahausknecht2015deep&quot; style=&quot;display: none;&quot;&gt;
-&lt;pre id=&quot;bhausknecht2015deep&quot;&gt;@inproceedings{hausknecht2015deep,
+[<a onclick="toggleBibtexhausknecht2015deep()">Show/hide BibTeX</a>]
+[<a onclick="copyBibtexhausknecht2015deep()">Copy BibTeX to clipboard</a>]
+<div id="ahausknecht2015deep" style="display: none;">
+<pre id="bhausknecht2015deep">@inproceedings{hausknecht2015deep,
   title = {{Deep recurrent Q-learning for partially observable MDPs}},
   author = {Hausknecht, Matthew and Stone, Peter},
   booktitle = {2015 AAAI Fall Symposium Series},
   year = {2015}
 }
-&lt;/pre&gt;
-&lt;/div&gt;
+</pre>
+</div>
 
-&lt;script&gt;
+<script>
 function toggleBibtexhausknecht2015deep(parameter) {
     var x= document.getElementById('ahausknecht2015deep');
     if (x.style.display === 'none') {
@@ -684,7 +991,7 @@ function toggleBibtexhausknecht2015deep(parameter) {
 
 function copyBibtexhausknecht2015deep(parameter) {
 	// https://stackoverflow.com/a/30810322/5471520
-	var textArea = document.createElement(&quot;textarea&quot;);
+	var textArea = document.createElement("textarea");
 	//
 	// *** This styling is an extra step which is likely not required. ***
 	//
@@ -738,27 +1045,27 @@ function copyBibtexhausknecht2015deep(parameter) {
 
 	document.body.removeChild(textArea);
 } 
-&lt;/script&gt;&lt;/li&gt;
-&lt;li&gt;&lt;div class=&quot;text-justify&quot;&gt;&lt;span id=&quot;Schmid_IROS2019&quot;&gt;Schmid, J. F., &lt;b&gt;Lauri, M.&lt;/b&gt;, &amp;amp; Frintrop, S. (2019, November). Explore, Approach, and Terminate: Evaluating Subtasks in Active Visual Object Search Based on Deep Reinforcement Learning. &lt;i&gt;IEEE/RSJ Intl. Conf. on Intelligent Robots and Systems (IROS)&lt;/i&gt;. https://doi.org/10.1109/IROS40897.2019.8967805&lt;/span&gt;&lt;/div&gt;
+</script></li>
+<li><div class="text-justify"><span id="Schmid_IROS2019">Schmid, J. F., <b>Lauri, M.</b>, &amp; Frintrop, S. (2019, November). Explore, Approach, and Terminate: Evaluating Subtasks in Active Visual Object Search Based on Deep Reinforcement Learning. <i>IEEE/RSJ Intl. Conf. on Intelligent Robots and Systems (IROS)</i>. https://doi.org/10.1109/IROS40897.2019.8967805</span></div>
 
-	[&lt;a target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; href=&quot;/repository/Schmid_IROS2019.pdf&quot;&gt;PDF&lt;/a&gt;]
-
-
-
-    [&lt;a target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; href=&quot;http://doi.org/10.1109/IROS40897.2019.8967805&quot;&gt;DOI&lt;/a&gt;]
+	[<a target="_blank" rel="noopener noreferrer" href="/repository/Schmid_IROS2019.pdf">PDF</a>]
 
 
 
-	[&lt;a target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; href=&quot;https://github.com/JanFabianSchmid/RL_for_AVOS&quot;&gt;Code&lt;/a&gt;]
+    [<a target="_blank" rel="noopener noreferrer" href="http://doi.org/10.1109/IROS40897.2019.8967805">DOI</a>]
 
 
-	[&lt;a target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; href=&quot;https://www.inf.uni-hamburg.de/en/inst/ab/cv/media/schmid-lauri-frintrop-iros-2019-video.mp4&quot;&gt;Video&lt;/a&gt;]
+
+	[<a target="_blank" rel="noopener noreferrer" href="https://github.com/JanFabianSchmid/RL_for_AVOS">Code</a>]
 
 
-[&lt;a onclick=&quot;toggleBibtexSchmid_IROS2019()&quot;&gt;Show/hide BibTeX&lt;/a&gt;]
-[&lt;a onclick=&quot;copyBibtexSchmid_IROS2019()&quot;&gt;Copy BibTeX to clipboard&lt;/a&gt;]
-&lt;div id=&quot;aSchmid_IROS2019&quot; style=&quot;display: none;&quot;&gt;
-&lt;pre id=&quot;bSchmid_IROS2019&quot;&gt;@inproceedings{Schmid_IROS2019,
+	[<a target="_blank" rel="noopener noreferrer" href="https://www.inf.uni-hamburg.de/en/inst/ab/cv/media/schmid-lauri-frintrop-iros-2019-video.mp4">Video</a>]
+
+
+[<a onclick="toggleBibtexSchmid_IROS2019()">Show/hide BibTeX</a>]
+[<a onclick="copyBibtexSchmid_IROS2019()">Copy BibTeX to clipboard</a>]
+<div id="aSchmid_IROS2019" style="display: none;">
+<pre id="bSchmid_IROS2019">@inproceedings{Schmid_IROS2019,
   author = {Schmid, Jan Fabian and Lauri, Mikko and Frintrop, Simone},
   title = {{Explore, Approach, and Terminate: Evaluating Subtasks in Active Visual Object Search Based on Deep Reinforcement Learning}},
   booktitle = {{IEEE/RSJ Intl. Conf. on Intelligent Robots and Systems (IROS)}},
@@ -769,10 +1076,10 @@ function copyBibtexhausknecht2015deep(parameter) {
   codelink = {https://github.com/JanFabianSchmid/RL_for_AVOS},
   videolink = {https://www.inf.uni-hamburg.de/en/inst/ab/cv/media/schmid-lauri-frintrop-iros-2019-video.mp4}
 }
-&lt;/pre&gt;
-&lt;/div&gt;
+</pre>
+</div>
 
-&lt;script&gt;
+<script>
 function toggleBibtexSchmid_IROS2019(parameter) {
     var x= document.getElementById('aSchmid_IROS2019');
     if (x.style.display === 'none') {
@@ -784,7 +1091,7 @@ function toggleBibtexSchmid_IROS2019(parameter) {
 
 function copyBibtexSchmid_IROS2019(parameter) {
 	// https://stackoverflow.com/a/30810322/5471520
-	var textArea = document.createElement(&quot;textarea&quot;);
+	var textArea = document.createElement("textarea");
 	//
 	// *** This styling is an extra step which is likely not required. ***
 	//
@@ -838,8 +1145,8 @@ function copyBibtexSchmid_IROS2019(parameter) {
 
 	document.body.removeChild(textArea);
 } 
-&lt;/script&gt;&lt;/li&gt;
-&lt;li&gt;&lt;div class=&quot;text-justify&quot;&gt;&lt;span id=&quot;Oliehoek2016&quot;&gt;Oliehoek, F. A., &amp;amp; Amato, C. (2016). &lt;i&gt;A Concise Introduction to Decentralized POMDPs&lt;/i&gt;. Springer.&lt;/span&gt;&lt;/div&gt;
+</script></li>
+<li><div class="text-justify"><span id="Oliehoek2016">Oliehoek, F. A., &amp; Amato, C. (2016). <i>A Concise Introduction to Decentralized POMDPs</i>. Springer.</span></div>
 
 
 
@@ -847,19 +1154,19 @@ function copyBibtexSchmid_IROS2019(parameter) {
 
 
 
-[&lt;a onclick=&quot;toggleBibtexOliehoek2016()&quot;&gt;Show/hide BibTeX&lt;/a&gt;]
-[&lt;a onclick=&quot;copyBibtexOliehoek2016()&quot;&gt;Copy BibTeX to clipboard&lt;/a&gt;]
-&lt;div id=&quot;aOliehoek2016&quot; style=&quot;display: none;&quot;&gt;
-&lt;pre id=&quot;bOliehoek2016&quot;&gt;@book{Oliehoek2016,
+[<a onclick="toggleBibtexOliehoek2016()">Show/hide BibTeX</a>]
+[<a onclick="copyBibtexOliehoek2016()">Copy BibTeX to clipboard</a>]
+<div id="aOliehoek2016" style="display: none;">
+<pre id="bOliehoek2016">@book{Oliehoek2016,
   author = {Oliehoek, Frans A and Amato, Christopher},
   title = {{A Concise Introduction to Decentralized POMDPs}},
   year = {2016},
   publisher = {Springer}
 }
-&lt;/pre&gt;
-&lt;/div&gt;
+</pre>
+</div>
 
-&lt;script&gt;
+<script>
 function toggleBibtexOliehoek2016(parameter) {
     var x= document.getElementById('aOliehoek2016');
     if (x.style.display === 'none') {
@@ -871,7 +1178,7 @@ function toggleBibtexOliehoek2016(parameter) {
 
 function copyBibtexOliehoek2016(parameter) {
 	// https://stackoverflow.com/a/30810322/5471520
-	var textArea = document.createElement(&quot;textarea&quot;);
+	var textArea = document.createElement("textarea");
 	//
 	// *** This styling is an extra step which is likely not required. ***
 	//
@@ -925,23 +1232,23 @@ function copyBibtexOliehoek2016(parameter) {
 
 	document.body.removeChild(textArea);
 } 
-&lt;/script&gt;&lt;/li&gt;
-&lt;li&gt;&lt;div class=&quot;text-justify&quot;&gt;&lt;span id=&quot;Lauri_ICRA2017&quot;&gt;&lt;b&gt;Lauri, M.&lt;/b&gt;, Heinänen, E., &amp;amp; Frintrop, S. (2017). Multi-Robot Active Information Gathering with Periodic Communication. &lt;i&gt;IEEE Intl. Conf. on Robotics and Automation (ICRA)&lt;/i&gt;, 851–856. https://doi.org/10.1109/ICRA.2017.7989104&lt;/span&gt;&lt;/div&gt;
+</script></li>
+<li><div class="text-justify"><span id="Lauri_ICRA2017"><b>Lauri, M.</b>, Heinänen, E., &amp; Frintrop, S. (2017). Multi-Robot Active Information Gathering with Periodic Communication. <i>IEEE Intl. Conf. on Robotics and Automation (ICRA)</i>, 851–856. https://doi.org/10.1109/ICRA.2017.7989104</span></div>
 
 
 
-    [&lt;a target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; href=&quot;http://doi.org/10.1109/ICRA.2017.7989104&quot;&gt;DOI&lt;/a&gt;]
+    [<a target="_blank" rel="noopener noreferrer" href="http://doi.org/10.1109/ICRA.2017.7989104">DOI</a>]
 
 
-	[&lt;a target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; href=&quot;https://arxiv.org/abs/1703.02610&quot;&gt;arXiv&lt;/a&gt;]
+	[<a target="_blank" rel="noopener noreferrer" href="https://arxiv.org/abs/1703.02610">arXiv</a>]
 
 
 
 
-[&lt;a onclick=&quot;toggleBibtexLauri_ICRA2017()&quot;&gt;Show/hide BibTeX&lt;/a&gt;]
-[&lt;a onclick=&quot;copyBibtexLauri_ICRA2017()&quot;&gt;Copy BibTeX to clipboard&lt;/a&gt;]
-&lt;div id=&quot;aLauri_ICRA2017&quot; style=&quot;display: none;&quot;&gt;
-&lt;pre id=&quot;bLauri_ICRA2017&quot;&gt;@inproceedings{Lauri_ICRA2017,
+[<a onclick="toggleBibtexLauri_ICRA2017()">Show/hide BibTeX</a>]
+[<a onclick="copyBibtexLauri_ICRA2017()">Copy BibTeX to clipboard</a>]
+<div id="aLauri_ICRA2017" style="display: none;">
+<pre id="bLauri_ICRA2017">@inproceedings{Lauri_ICRA2017,
   author = {Lauri, Mikko and Heinänen, Eero and Frintrop, Simone},
   title = {{Multi-Robot Active Information Gathering with Periodic Communication}},
   booktitle = {IEEE Intl. Conf. on Robotics and Automation (ICRA)},
@@ -952,10 +1259,10 @@ function copyBibtexOliehoek2016(parameter) {
   doi = {10.1109/ICRA.2017.7989104},
   eprint = {1703.02610}
 }
-&lt;/pre&gt;
-&lt;/div&gt;
+</pre>
+</div>
 
-&lt;script&gt;
+<script>
 function toggleBibtexLauri_ICRA2017(parameter) {
     var x= document.getElementById('aLauri_ICRA2017');
     if (x.style.display === 'none') {
@@ -967,7 +1274,7 @@ function toggleBibtexLauri_ICRA2017(parameter) {
 
 function copyBibtexLauri_ICRA2017(parameter) {
 	// https://stackoverflow.com/a/30810322/5471520
-	var textArea = document.createElement(&quot;textarea&quot;);
+	var textArea = document.createElement("textarea");
 	//
 	// *** This styling is an extra step which is likely not required. ***
 	//
@@ -1021,5 +1328,93 @@ function copyBibtexLauri_ICRA2017(parameter) {
 
 	document.body.removeChild(textArea);
 } 
-&lt;/script&gt;&lt;/li&gt;&lt;/ol&gt;</content><author><name>Mikko Lauri</name></author><summary type="html">In this post, I give an overview of my recent research on multi-agent active perception, published in the two recent papers (Lauri et al., 2020; Lauri et al., 2019).</summary></entry><entry><title type="html">Website started</title><link href="https://laurimi.github.io/news/2020/05/10/welcome.html" rel="alternate" type="text/html" title="Website started" /><published>2020-05-10T00:00:00+02:00</published><updated>2020-05-10T00:00:00+02:00</updated><id>https://laurimi.github.io/news/2020/05/10/welcome</id><content type="html" xml:base="https://laurimi.github.io/news/2020/05/10/welcome.html">&lt;p&gt;Today, the first version of the website is up.
-I used &lt;a href=&quot;https://jekyllrb.com&quot; target=&quot;_blank&quot;&gt;jekyll&lt;/a&gt;, along with the &lt;a href=&quot;https://github.com/mmistakes/minimal-mistakes&quot; target=&quot;_blank&quot;&gt;minimal-mistakes&lt;/a&gt; theme and &lt;a href=&quot;https://github.com/inukshuk/jekyll-scholar&quot; target=&quot;_blank&quot;&gt;jekyll-scholar&lt;/a&gt; plugin for citations.&lt;/p&gt;</content><author><name>Mikko Lauri</name></author><summary type="html">Today, the first version of the website is up. I used jekyll, along with the minimal-mistakes theme and jekyll-scholar plugin for citations.</summary></entry></feed>
+</script></li></ol>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-06-13T00:00:00+02:00">June 13, 2020</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Active+perception+and+decentralized+decision-making%20https%3A%2F%2Flaurimi.github.io%2Fresearch%2F2020%2F06%2F13%2Factive-perception.html" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Flaurimi.github.io%2Fresearch%2F2020%2F06%2F13%2Factive-perception.html" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Flaurimi.github.io%2Fresearch%2F2020%2F06%2F13%2Factive-perception.html" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/news/2020/05/10/welcome.html" class="pagination--pager" title="Website started
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 Mikko Lauri. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+  </body>
+</html>
