@@ -1,4 +1,764 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="https://laurimi.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://laurimi.github.io/" rel="alternate" type="text/html" /><updated>2020-07-03T10:38:13+02:00</updated><id>https://laurimi.github.io/feed.xml</id><title type="html">Mikko Lauri</title><subtitle>Researcher in Computer Science and Robotics. Multi-agent  decision-making under uncertainty, active perception,  and deep learning for robot vision.</subtitle><author><name>Mikko Lauri</name></author><entry><title type="html">Active perception and decentralized decision-making</title><link href="https://laurimi.github.io/research/2020/06/13/active-perception.html" rel="alternate" type="text/html" title="Active perception and decentralized decision-making" /><published>2020-06-13T00:00:00+02:00</published><updated>2020-06-13T00:00:00+02:00</updated><id>https://laurimi.github.io/research/2020/06/13/active-perception</id><content type="html" xml:base="https://laurimi.github.io/research/2020/06/13/active-perception.html">&lt;p&gt;&lt;em&gt;In this post, I give an overview of my recent research on multi-agent active perception, published in the two recent papers &lt;a class=&quot;citation&quot; href=&quot;#Lauri_JAAMAS2020&quot;&gt;(Lauri et al., 2020; Lauri et al., 2019)&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="https://laurimi.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://laurimi.github.io/" rel="alternate" type="text/html" /><updated>2020-07-07T08:37:03+02:00</updated><id>https://laurimi.github.io/feed.xml</id><title type="html">Mikko Lauri</title><subtitle>Researcher in Computer Science and Robotics. Multi-agent  decision-making under uncertainty, active perception,  and deep learning for robot vision.</subtitle><author><name>Mikko Lauri</name></author><entry><title type="html">Multi-robot next-best-view planning</title><link href="https://laurimi.github.io/research/2020/07/04/multirobot-nbv.html" rel="alternate" type="text/html" title="Multi-robot next-best-view planning" /><published>2020-07-04T00:00:00+02:00</published><updated>2020-07-04T00:00:00+02:00</updated><id>https://laurimi.github.io/research/2020/07/04/multirobot-nbv</id><content type="html" xml:base="https://laurimi.github.io/research/2020/07/04/multirobot-nbv.html">&lt;p&gt;&lt;em&gt;In this post, I give an overview of my recent paper &lt;a class=&quot;citation&quot; href=&quot;#Lauri_RAL2020&quot;&gt;(Lauri et al., 2020)&lt;/a&gt; on multi-robot next-best-view planning.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Robots need three-dimensional scene models for many tasks ranging from manipulation to mapping and motion planning.
+To build a scene model, the robot needs to collect data, for example depth images of point clouds, from many different viewpoints.
+These data are then fused together to create the scene model in a process known as scene reconstruction.&lt;/p&gt;
+
+&lt;p&gt;Next-best-view (NBV) planning refers to intelligently choosing &lt;em&gt;how&lt;/em&gt; and &lt;em&gt;where&lt;/em&gt; the robot should capture the next images.
+The objective is to reduce the time and resources required to obtain a scene reconstruction of sufficient quality.
+Single-robot NBV planning therefore often considers utility functions such as the expected information gain available from a particular view.&lt;/p&gt;
+
+&lt;p&gt;When multiple robots are used for scene reconstruction, the robots should coordinate their actions.
+They should avoid views that overlap strongly, because that is inefficient.
+NBV planning for multiple robots therefore needs to consider not only the information gain for a single robot, but for the team of robots as a whole, as illustrated in the figure below.&lt;/p&gt;
+
+&lt;figure class=&quot;half&quot;&gt;
+    &lt;a href=&quot;/assets/images/multirobot-nbv/waste_sm.png&quot;&gt;&lt;img src=&quot;/assets/images/multirobot-nbv/waste_sm.png&quot; /&gt;&lt;/a&gt;
+    &lt;a href=&quot;/assets/images/multirobot-nbv/view_example.png&quot;&gt;&lt;img src=&quot;/assets/images/multirobot-nbv/view_example.png&quot; /&gt;&lt;/a&gt;
+    &lt;figcaption&gt;Left: Two robots reconstructing a tabletop scene. Right: Point clouds captured by the robots, and the fields of view of the robots' cameras (red and blue frustums).&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Let us assume we have a team of \(n\) robots performing scene reconstruction.
+Each robot \( i = 1, 2, \ldots, n \) may choose its next view \(x_i\) from some set \(X_i \) of potential views.
+The utility of selecting this set of views is measured by a &lt;em&gt;utility function&lt;/em&gt; \(f \) that maps tuples of views to a real number proportional to “how good” these views are.
+The NBV planning problem can be stated as a maximization problem
+\begin{equation}
+\max\limits_{\forall i: x_i \in X_i} f(x_1, x_2, \ldots, x_n),
+\end{equation}
+that is, maximize the utility over all possible valid choices of views for each robot.&lt;/p&gt;
+
+&lt;p&gt;In our recent paper &lt;a class=&quot;citation&quot; href=&quot;#Lauri_RAL2020&quot;&gt;(Lauri et al., 2020)&lt;/a&gt; we make two contributions to solving these kinds of multi-robot NBV planning problems:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;We show that a utility function \(f\) can be designed which encourages the robots to avoid selecting overlapping views. Furthermore, this utility function turns out to be a &lt;em&gt;monotonically increasing and submodular&lt;/em&gt; function.&lt;/li&gt;
+  &lt;li&gt;A simple polynomial-time, greedy algorithm can solve the maximization problem above with bounded error, that is, the solution found by the greedy algorithm is withing a constant factor from an optimal solution.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;In this post, I describe the technical background of our results, the implementation of the optimization algorithm we used, along with some thoughts about future work that still remains to be done.&lt;/p&gt;
+
+&lt;h2 id=&quot;background&quot;&gt;Background&lt;/h2&gt;
+&lt;p&gt;Before jumping into solving multi-robot NBV planning problems, we look at two mathematical concepts that enable our results: matroids and submodularity.&lt;/p&gt;
+
+&lt;h3 id=&quot;matroids&quot;&gt;Matroids&lt;/h3&gt;
+&lt;p&gt;Matroids generalize the notion of independence from vectors to sets.
+A matroid \( (\Omega, \mathcal{I})\) consists of a &lt;em&gt;ground set&lt;/em&gt; \( \Omega\) and a family of independent sets \( \mathcal{I}\).
+Every element \( I \in \mathcal{I} \) is an &lt;em&gt;independent set&lt;/em&gt;, and is a subset of the ground set.
+Matroid also need to satisfy a few other properties, a more complete discussion may be found in &lt;a class=&quot;citation&quot; href=&quot;#Oxley2003&quot;&gt;(Oxley, 2003)&lt;/a&gt; or a textbook on the subject.&lt;/p&gt;
+
+&lt;p&gt;In our case, the ground set is the union of all robots’ views, that is, \( \Omega = \bigcup\limits_{i=1}^n X_i\).
+The purpose of the matroid is to represent all valid views selectable by the team of robots by &lt;em&gt;constraining&lt;/em&gt; the ground set.
+In particular, only subsets of \( \Omega\) that contain &lt;em&gt;at most&lt;/em&gt; one view per robot are valid.
+Formally, this leads to the family of independent sets
+\begin{equation}
+\mathcal{I} = \left\lbrace I \subseteq \Omega \middle| \forall i: |X_i \cap I| \leq 1 \right\rbrace.
+\end{equation}
+This is also known as a &lt;em&gt;block matroid&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;The block matroid \( (\Omega, \mathcal{I})\) therefore depicts all valid view combinationss, where each robot chooses either no view at all or a single view.
+The maximization problem from above can be stated as a matroid-constrained maximization problem
+\begin{equation}
+\max\limits_{I \in \mathcal{I}} f(I).
+\end{equation}
+Next, we look at a property of the utility function \(f \) that makes this problem easy to approximate.&lt;/p&gt;
+
+&lt;h3 id=&quot;submodularity&quot;&gt;Submodularity&lt;/h3&gt;
+&lt;p&gt;The utility function \(f\) above maps a tuple of views to a real number.
+Equivalently, we can think of it as a set function \(f: 2^{\Omega} \to \mathbb{R} \) that maps subsets of the ground set \( \Omega\) to a real number.
+Here, \(2^\Omega\) denotes the power set of \( \Omega\) – the set of all subsets of \(\Omega\).&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Submodularity&lt;/em&gt; is an interesting property of set functions.
+It can be thought of as a diminishing returns property: adding a new element \(x \in \Omega \) to a subset \(A \subset \Omega\) improves the value of \(f\) more the smaller the subset is.
+Submodularity appears in many applications, for example in sensor placement &lt;a class=&quot;citation&quot; href=&quot;#krause2008near&quot;&gt;(Krause et al., 2008)&lt;/a&gt;.
+Suppose you are considering deploying a new sensor.
+Intuitively, if you already have deployd tons of other sensors, the marginal utility of adding this new sensor is not as great compared to if you only have a few sensors so far.
+Submodularity formalizes this intuition.&lt;/p&gt;
+
+&lt;p&gt;Given a set function \(f\), it is submodular if for any \( A \subset B \subset \Omega\) and any \( x \in \Omega \setminus B \), \(f(A \cup \{x\}) - f(A) \geq f(B \cup \{x\}) - f(B)\).
+Further, \(f\) is said to be monotonically increasing, if for any \(A \subset \Omega \) and \( x \in \Omega \setminus A\), \(f(A \cup \{x\}) \geq f(A)\).&lt;/p&gt;
+
+&lt;h3 id=&quot;maximizing-a-monotonically-increasing-submodular-function&quot;&gt;Maximizing a monotonically increasing submodular function&lt;/h3&gt;
+&lt;p&gt;Let’s consider a greedy algorithm for solving the maximization problem \(\max\limits_{I \in \mathcal{I}} f(I)\).
+Start with the solution \(I_0 = \emptyset\).
+Then, at steps \(k = 1, \ldots, n \),&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Find the element \(x^* \in \Omega\) that maximizes the marginal utility \(f(I_{k-1} \cup \{x^*\}) - f(I_{k-1})\) such that \( I_{k-1} \cup \{x^*\}\) still satisfies the matroid constraint, that is, \(I_{k-1} \cup \{x^*\} \in \mathcal{I} \)&lt;/li&gt;
+  &lt;li&gt;Assign \(I_k = I_{k-1} \cup \{x^*\}\) and if \(k &amp;lt; n\), incremnent \(k\) and go back to 1, otherwise return \(I_k\).&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;If \(f\) is monotonically increasing and submodular, then the solution \(I_n\) returned by this simple greedy algorithm is a bounded approximation.
+Specifically, it is within a factor of \( \frac{1}{2}\) from the optimal solution: \(f(I_n) \geq \frac{1}{2} \max\limits_{I \in \mathcal{I}} f(I) \).
+A proof of this result is in &lt;a class=&quot;citation&quot; href=&quot;#fisher1978analysis&quot;&gt;(Fisher et al., 1978)&lt;/a&gt;.
+This is interesting for many applications where submodularity appears, because a polynomial-time algorithm can be guaranteed to provide a bounded approximation to the overall optimization problem.&lt;/p&gt;
+
+&lt;h2 id=&quot;multi-robot-next-best-view-planning&quot;&gt;Multi-robot next-best-view planning&lt;/h2&gt;
+&lt;p&gt;What remains to be done is to come up with a utility function \(f \) that is suitable for multi-robot NBV planning, and is submodular and monotonically increasing.
+Then, we can use greedy maximization to solve multi-robot NBV planning problems.&lt;/p&gt;
+
+&lt;h3 id=&quot;assumptions&quot;&gt;Assumptions&lt;/h3&gt;
+&lt;p&gt;We make two assumptions about the problem at hand.
+Firstly, we assume the robots can communicate to coordinate their next sensing actions.
+This is reasonable in settings where the robots are deployed in close proximity with reliable communication, e.g., industrial robots on the same wired network in a warehouse.
+The problem we consider is therefore a centralized optimization problem.
+However, the same kinds of methods can also be applied to distributed problems where the robots do not constantly communicate, see for example &lt;a class=&quot;citation&quot; href=&quot;#corah2019distributed&quot;&gt;(Corah &amp;amp; Michael, 2019)&lt;/a&gt;.
+Secondly, we assume the potential views of each robot have already been determined, that is, the sets \(X_i\) are known and fixed.&lt;/p&gt;
+
+&lt;h3 id=&quot;utility-function&quot;&gt;Utility function&lt;/h3&gt;
+&lt;p&gt;In the paper we propose an overlap-aware utility function for multirobot NBV planning.
+This utility function is based on applying raytracing in the current scene reconstruction to find out which views are likely to result in a high information gain.
+Overlap is avoided by not rewarding the robots multiple times for observing the same part of the scene.&lt;/p&gt;
+
+&lt;p&gt;We use an &lt;a href=&quot;https://octomap.github.io/&quot;&gt;OctoMap&lt;/a&gt; to model the environment as a three-dimensional voxel grid.
+The OctoMap package already provides tools for raytracing, which makes working with it very convenient in this case.
+Let’s say there are three robots, and we wish to evalute the usefulness of them selecting the views \(x_1, x_2, x_3 \), respectively.
+This situation is conceptually illustrated in the figure below.
+The view \(x_i\) of each robot consists of rays \(r_{i,j}\) that pass through some voxels.
+These rays indicate the part of the environment potentially seen by each robot, and is illustrated by the shaded voxels.&lt;/p&gt;
+
+&lt;figure&gt;
+    &lt;a href=&quot;/assets/images/multirobot-nbv/overlap.png&quot;&gt;&lt;img src=&quot;/assets/images/multirobot-nbv/overlap.png&quot; /&gt;&lt;/a&gt;
+    &lt;figcaption&gt;Rays (solid lines) emitted from three different views, and the corresponding visible voxels (shaded).&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;In the example above, views \(x_1\) and \(x_2\) both observe the same voxel \(v\) indicated in the figure – this is not very useful!
+Even one robot seeing the voxel is sufficient, while the other could use its camera to look elsewhere.
+Taking this into account is the key feature of our overlap-aware utility function.
+Informally, our utility function satisfies the following:&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;blockquote&gt;
+    &lt;p&gt;For each voxel \(v\) in the environment, the robots gain utility only once, and observing the same voxel from multiple views is not useful.&lt;/p&gt;
+  &lt;/blockquote&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;In the example above, out of all views that could possibly observe \(v\), only the best one is considered by our utility function.&lt;/p&gt;
+
+&lt;p&gt;In the paper &lt;a class=&quot;citation&quot; href=&quot;#Lauri_RAL2020&quot;&gt;(Lauri et al., 2020)&lt;/a&gt;, we prove that our overlap-aware utility function is a monotonically increasing and submodular function.
+As we saw earlier, maximization problems involving submodular functions are approximately solvable by a greedy algorithm.
+What is also interesting is that the our utility function generalizes several other utility functions proposed for the single-robot case &lt;a class=&quot;citation&quot; href=&quot;#delmerico2018comparison&quot;&gt;(Delmerico et al., 2018)&lt;/a&gt;, helping justify why the greedy optimization strategy is also appropriate in single-robot settings.&lt;/p&gt;
+
+&lt;h3 id=&quot;greedy-maximization-for-next-best-view-planning&quot;&gt;Greedy maximization for next-best-view planning&lt;/h3&gt;
+&lt;p&gt;Our proposed utility function can be separated into a sum of per-voxel utilities \(g_v(I)\), where \( v \) is a voxel and \(I\) is an independent set of views.
+This separation property also makes it easy to implement the greedy maximization algorithm for NBV planning, similar to the one outlined earlier.
+The algorithm has an initialization stage, which is the only step where costly raytracing is required.
+After the initialization stage, the maximization can be done simply by querying data from a lookup table.&lt;/p&gt;
+
+&lt;p&gt;In the initialization stage, we process for each robot \(i\) each of its candidate views \(x_i \in X_i\).
+By raytracing, we can determine the subset of voxels that is potentially visible at view \(x_i\).
+For all such voxels \(v\), we save the per-voxel utility \(g_v(x_i)\) into a data structure.&lt;/p&gt;
+
+&lt;p&gt;When we want to find an independent set \( I \) that maximizes the utility \(f\), we proceed similar to the simple greedy algorithm earlier.
+First, we choose the view \(x\) that has the greatest sum of per-voxel utilities \( g_v(x)\) over all potentially visible voxels.
+Notice that there is no subscript \(i\) as the view \(x\) could be for any of the robots.
+Our initial independent set is \( I_1 = \{ x \}\).
+The per-voxel utility of the independent set \(I_1 \) is initialized to \(g_v(I_1) = g_v(x) \).&lt;/p&gt;
+
+&lt;p&gt;At any subsequent step \(k \), we have an independent set \(I_k\).
+We then process the views of all robots \( i\) whose views are not yet in \(I_k\).
+We calculate the marginal utility of view \( x_i\) as follows.
+First we initalize the marginal utility \(M(x_i)\) to zero.
+We loop over all visible voxels \(v\) at \(x_i\).
+For each such voxel, there are two possibilities.&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;The voxel was not seen by any view so far. Then we add \(g_v(x_i)\) to \(M(x_i)\).&lt;/li&gt;
+  &lt;li&gt;The voxel was seen by at least one view in \(I_k\). If \(g_v(x_i) &amp;gt; g_v(I_k) \), the new view is better for observing \(v\), and we add \(g_v(x_i) - g_v(I_k)\) to \(M(x_i)\). Otherwise, the old views are better and we do not add anything to \(M(x_i)\).&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Finally, we select the view \(x\) that has the greatest marginal utility \(M(x)\) and add it to \(I_k \) to obtain \(I_{k+1}\).
+The process is repeated until \(k = n\), and we have a view planned for each robot.&lt;/p&gt;
+
+&lt;h3 id=&quot;how-well-does-it-work&quot;&gt;How well does it work?&lt;/h3&gt;
+&lt;p&gt;We evaluated the greedy algorithm for multi-robot NBV in simulated and real-world scene reconstruction tasks with multiple robots.
+The figure below shows an example of two simulated environments we experimented with.
+In addition to what is shown in the figures, randomly sampled furniture and other objects were present in the simulations.
+We used scenes from &lt;a href=&quot;https://robotvault.bitbucket.io/scenenet-rgbd.html&quot;&gt;SceneNet RGBD&lt;/a&gt; and applied &lt;a href=&quot;https://octomap.github.io/&quot;&gt;OctoMap&lt;/a&gt; for the map representation and raytracing tasks.
+The single-robot &lt;a href=&quot;https://github.com/ethz-asl/volumetric_mapping&quot;&gt;volumetric mapping ROS package&lt;/a&gt; also provided a lot of inspiration for the implementation.&lt;/p&gt;
+
+&lt;figure class=&quot;half&quot;&gt;
+    &lt;a href=&quot;/assets/images/multirobot-nbv/bathroom8.png&quot;&gt;&lt;img src=&quot;/assets/images/multirobot-nbv/bathroom8.png&quot; /&gt;&lt;/a&gt;
+    &lt;a href=&quot;/assets/images/multirobot-nbv/kitchen11.png&quot;&gt;&lt;img src=&quot;/assets/images/multirobot-nbv/kitchen11.png&quot; /&gt;&lt;/a&gt;
+    &lt;figcaption&gt;Left: The &quot;Bathroom 8&quot; environment. Right: The &quot;Kitchen 11&quot; environment.&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;We compared our multi-robot NBV algorithm to randomly selecting views and to planning for each robot separately (ignoring coordination of view planning, leading to more overlap).
+We measured the &lt;em&gt;surface coverage percentage&lt;/em&gt; as a function of the number of views taken by each of 8 robots in the environment.
+The results are summarized in the plot below, showing that our method works better than the baselines.
+Bathroom 8 consists of many rooms with occluders, so planning is more important and effective here.
+This is reflected in the good performance of our method compared to random planning.
+Kitchen 11 is a single room with no occluding walls, and here the baseline methods also work well as the reconstruction task overall is easier.&lt;/p&gt;
+
+&lt;figure class=&quot;half&quot;&gt;
+    &lt;a href=&quot;/assets/images/multirobot-nbv/sc_bathroom8.png&quot;&gt;&lt;img src=&quot;/assets/images/multirobot-nbv/sc_bathroom8.png&quot; /&gt;&lt;/a&gt;
+    &lt;a href=&quot;/assets/images/multirobot-nbv/sc_kitchen11.png&quot;&gt;&lt;img src=&quot;/assets/images/multirobot-nbv/sc_kitchen11.png&quot; /&gt;&lt;/a&gt;
+    &lt;figcaption&gt;Surface coverage as a function of number of views per robot. Number in parentheses in the legend indicates area under curve (AUC).&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;We also deployed our method to a setting with two real robots, as shown in the images at the top of this post.
+Planning with our utility function that takes overlap into account also worked well in this setting.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion-and-future-work&quot;&gt;Conclusion and future work&lt;/h2&gt;
+
+&lt;p&gt;In &lt;a class=&quot;citation&quot; href=&quot;#Lauri_RAL2020&quot;&gt;(Lauri et al., 2020)&lt;/a&gt; we proposed an overlap-aware utility function for next-best-view (NBV) planning that is applicable to multi-robot settings.
+There are several interesting directions of future work that we did not explore yet.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;We used a fixed set of candidate viewpoints. The trade-off between having more viewpoints and increased computational time is not clear yet. It might also be useful to create the candidate viewpoints dynamically, instead of working with fixed sets \(X_i\) of views for each robot.&lt;/li&gt;
+  &lt;li&gt;As mentioned earlier, many utility functions have been proposed for single-robot NBV planning &lt;a class=&quot;citation&quot; href=&quot;#delmerico2018comparison&quot;&gt;(Delmerico et al., 2018)&lt;/a&gt;. Our overlap-aware utility function generalizes several of these, but we did not study in detail which utility functions might be most useful for which multi-robot application.&lt;/li&gt;
+  &lt;li&gt;We also did not tune the parameters of our algorithm in detail, so it remains to be investigated how for example the number of candidate views, raytracing resolution, voxel map resolution, etc., should be set for various applications.&lt;/li&gt;
+  &lt;li&gt;Constant communication is assumed in the centralized setting. However, matroid-constrained submodular maximization is also applicable with less restrictive centralization assumptions &lt;a class=&quot;citation&quot; href=&quot;#corah2019distributed&quot;&gt;(Corah &amp;amp; Michael, 2019)&lt;/a&gt;, potentially applicable to NBV planning as well.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I am hoping future research will shed a light on these issues as well!&lt;/p&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+
+&lt;ol class=&quot;bibliography&quot;&gt;&lt;li&gt;&lt;div class=&quot;text-justify&quot;&gt;&lt;span id=&quot;Lauri_RAL2020&quot;&gt;&lt;b&gt;Lauri, M.&lt;/b&gt;, Pajarinen, J., Peters, J., &amp;amp; Frintrop, S. (2020). Multi-Sensor Next-Best-View Planning as Matroid-Constrained Submodular Maximization. &lt;i&gt;IEEE Robotics and Automation Letters (In Press)&lt;/i&gt;. https://doi.org/10.1109/LRA.2020.3007445&lt;/span&gt;&lt;/div&gt;
+
+
+
+    [&lt;a target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; href=&quot;http://doi.org/10.1109/LRA.2020.3007445&quot;&gt;DOI&lt;/a&gt;]
+
+
+	[&lt;a target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; href=&quot;https://arxiv.org/abs/2007.02084&quot;&gt;arXiv&lt;/a&gt;]
+
+
+
+
+[&lt;a onclick=&quot;toggleBibtexLauri_RAL2020()&quot;&gt;Show/hide BibTeX&lt;/a&gt;]
+[&lt;a onclick=&quot;copyBibtexLauri_RAL2020()&quot;&gt;Copy BibTeX to clipboard&lt;/a&gt;]
+&lt;div id=&quot;aLauri_RAL2020&quot; style=&quot;display: none;&quot;&gt;
+&lt;pre id=&quot;bLauri_RAL2020&quot;&gt;@article{Lauri_RAL2020,
+  author = {Lauri, Mikko and Pajarinen, Joni and Peters, Jan and Frintrop, Simone},
+  title = {Multi-Sensor Next-Best-View Planning as Matroid-Constrained Submodular Maximization},
+  year = {2020},
+  doi = {10.1109/LRA.2020.3007445},
+  journal = {IEEE Robotics and Automation Letters (In Press)},
+  archiveprefix = {arXiv},
+  eprint = {2007.02084}
+}
+&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+function toggleBibtexLauri_RAL2020(parameter) {
+    var x= document.getElementById('aLauri_RAL2020');
+    if (x.style.display === 'none') {
+        x.style.display = 'block';
+    } else {
+        x.style.display = 'none';
+    }
+}
+
+function copyBibtexLauri_RAL2020(parameter) {
+	// https://stackoverflow.com/a/30810322/5471520
+	var textArea = document.createElement(&quot;textarea&quot;);
+	//
+	// *** This styling is an extra step which is likely not required. ***
+	//
+	// Why is it here? To ensure:
+	// 1. the element is able to have focus and selection.
+	// 2. if element was to flash render it has minimal visual impact.
+	// 3. less flakyness with selection and copying which **might** occur if
+	//    the textarea element is not visible.
+	//
+	// The likelihood is the element won't even render, not even a
+	// flash, so some of these are just precautions. However in
+	// Internet Explorer the element is visible whilst the popup
+	// box asking the user for permission for the web page to
+	// copy to the clipboard.
+	//
+
+	// Place in top-left corner of screen regardless of scroll position.
+	textArea.style.position = 'fixed';
+	textArea.style.top = 0;
+	textArea.style.left = 0;
+
+	// Ensure it has a small width and height. Setting to 1px / 1em
+	// doesn't work as this gives a negative w/h on some browsers.
+	textArea.style.width = '2em';
+	textArea.style.height = '2em';
+
+	// We don't need padding, reducing the size if it does flash render.
+	textArea.style.padding = 0;
+
+	// Clean up any borders.
+	textArea.style.border = 'none';
+	textArea.style.outline = 'none';
+	textArea.style.boxShadow = 'none';
+
+	// Avoid flash of white box if rendered for any reason.
+	textArea.style.background = 'transparent';
+
+	textArea.value = document.getElementById('bLauri_RAL2020').textContent;
+
+	document.body.appendChild(textArea);
+	textArea.focus();
+	textArea.select();
+
+	try {
+	  var successful = document.execCommand('copy');
+	  var msg = successful ? 'successful' : 'unsuccessful';
+	  console.log('Copying text command was ' + msg);
+	} catch (err) {
+	  console.log('Oops, unable to copy');
+	}
+
+	document.body.removeChild(textArea);
+} 
+&lt;/script&gt;&lt;/li&gt;
+&lt;li&gt;&lt;div class=&quot;text-justify&quot;&gt;&lt;span id=&quot;Oxley2003&quot;&gt;Oxley, J. (2003). What is a Matroid? &lt;i&gt;CUBO, A Mathematical Journal&lt;/i&gt;, &lt;i&gt;5&lt;/i&gt;(3), 176–215.&lt;/span&gt;&lt;/div&gt;
+
+
+
+
+
+
+
+[&lt;a onclick=&quot;toggleBibtexOxley2003()&quot;&gt;Show/hide BibTeX&lt;/a&gt;]
+[&lt;a onclick=&quot;copyBibtexOxley2003()&quot;&gt;Copy BibTeX to clipboard&lt;/a&gt;]
+&lt;div id=&quot;aOxley2003&quot; style=&quot;display: none;&quot;&gt;
+&lt;pre id=&quot;bOxley2003&quot;&gt;@article{Oxley2003,
+  title = {What is a Matroid?},
+  volume = {5},
+  number = {3},
+  journal = {CUBO, A Mathematical Journal},
+  author = {Oxley, James},
+  year = {2003},
+  pages = {176--215}
+}
+&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+function toggleBibtexOxley2003(parameter) {
+    var x= document.getElementById('aOxley2003');
+    if (x.style.display === 'none') {
+        x.style.display = 'block';
+    } else {
+        x.style.display = 'none';
+    }
+}
+
+function copyBibtexOxley2003(parameter) {
+	// https://stackoverflow.com/a/30810322/5471520
+	var textArea = document.createElement(&quot;textarea&quot;);
+	//
+	// *** This styling is an extra step which is likely not required. ***
+	//
+	// Why is it here? To ensure:
+	// 1. the element is able to have focus and selection.
+	// 2. if element was to flash render it has minimal visual impact.
+	// 3. less flakyness with selection and copying which **might** occur if
+	//    the textarea element is not visible.
+	//
+	// The likelihood is the element won't even render, not even a
+	// flash, so some of these are just precautions. However in
+	// Internet Explorer the element is visible whilst the popup
+	// box asking the user for permission for the web page to
+	// copy to the clipboard.
+	//
+
+	// Place in top-left corner of screen regardless of scroll position.
+	textArea.style.position = 'fixed';
+	textArea.style.top = 0;
+	textArea.style.left = 0;
+
+	// Ensure it has a small width and height. Setting to 1px / 1em
+	// doesn't work as this gives a negative w/h on some browsers.
+	textArea.style.width = '2em';
+	textArea.style.height = '2em';
+
+	// We don't need padding, reducing the size if it does flash render.
+	textArea.style.padding = 0;
+
+	// Clean up any borders.
+	textArea.style.border = 'none';
+	textArea.style.outline = 'none';
+	textArea.style.boxShadow = 'none';
+
+	// Avoid flash of white box if rendered for any reason.
+	textArea.style.background = 'transparent';
+
+	textArea.value = document.getElementById('bOxley2003').textContent;
+
+	document.body.appendChild(textArea);
+	textArea.focus();
+	textArea.select();
+
+	try {
+	  var successful = document.execCommand('copy');
+	  var msg = successful ? 'successful' : 'unsuccessful';
+	  console.log('Copying text command was ' + msg);
+	} catch (err) {
+	  console.log('Oops, unable to copy');
+	}
+
+	document.body.removeChild(textArea);
+} 
+&lt;/script&gt;&lt;/li&gt;
+&lt;li&gt;&lt;div class=&quot;text-justify&quot;&gt;&lt;span id=&quot;krause2008near&quot;&gt;Krause, A., Singh, A., &amp;amp; Guestrin, C. (2008). Near-optimal sensor placements in Gaussian processes: Theory, efficient algorithms and empirical studies. &lt;i&gt;Journal of Machine Learning Research&lt;/i&gt;, &lt;i&gt;9&lt;/i&gt;(Feb), 235–284.&lt;/span&gt;&lt;/div&gt;
+
+
+
+
+
+
+
+[&lt;a onclick=&quot;toggleBibtexkrause2008near()&quot;&gt;Show/hide BibTeX&lt;/a&gt;]
+[&lt;a onclick=&quot;copyBibtexkrause2008near()&quot;&gt;Copy BibTeX to clipboard&lt;/a&gt;]
+&lt;div id=&quot;akrause2008near&quot; style=&quot;display: none;&quot;&gt;
+&lt;pre id=&quot;bkrause2008near&quot;&gt;@article{krause2008near,
+  title = {Near-optimal sensor placements in Gaussian processes: Theory, efficient algorithms and empirical studies},
+  author = {Krause, Andreas and Singh, Ajit and Guestrin, Carlos},
+  journal = {Journal of Machine Learning Research},
+  volume = {9},
+  number = {Feb},
+  pages = {235--284},
+  year = {2008}
+}
+&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+function toggleBibtexkrause2008near(parameter) {
+    var x= document.getElementById('akrause2008near');
+    if (x.style.display === 'none') {
+        x.style.display = 'block';
+    } else {
+        x.style.display = 'none';
+    }
+}
+
+function copyBibtexkrause2008near(parameter) {
+	// https://stackoverflow.com/a/30810322/5471520
+	var textArea = document.createElement(&quot;textarea&quot;);
+	//
+	// *** This styling is an extra step which is likely not required. ***
+	//
+	// Why is it here? To ensure:
+	// 1. the element is able to have focus and selection.
+	// 2. if element was to flash render it has minimal visual impact.
+	// 3. less flakyness with selection and copying which **might** occur if
+	//    the textarea element is not visible.
+	//
+	// The likelihood is the element won't even render, not even a
+	// flash, so some of these are just precautions. However in
+	// Internet Explorer the element is visible whilst the popup
+	// box asking the user for permission for the web page to
+	// copy to the clipboard.
+	//
+
+	// Place in top-left corner of screen regardless of scroll position.
+	textArea.style.position = 'fixed';
+	textArea.style.top = 0;
+	textArea.style.left = 0;
+
+	// Ensure it has a small width and height. Setting to 1px / 1em
+	// doesn't work as this gives a negative w/h on some browsers.
+	textArea.style.width = '2em';
+	textArea.style.height = '2em';
+
+	// We don't need padding, reducing the size if it does flash render.
+	textArea.style.padding = 0;
+
+	// Clean up any borders.
+	textArea.style.border = 'none';
+	textArea.style.outline = 'none';
+	textArea.style.boxShadow = 'none';
+
+	// Avoid flash of white box if rendered for any reason.
+	textArea.style.background = 'transparent';
+
+	textArea.value = document.getElementById('bkrause2008near').textContent;
+
+	document.body.appendChild(textArea);
+	textArea.focus();
+	textArea.select();
+
+	try {
+	  var successful = document.execCommand('copy');
+	  var msg = successful ? 'successful' : 'unsuccessful';
+	  console.log('Copying text command was ' + msg);
+	} catch (err) {
+	  console.log('Oops, unable to copy');
+	}
+
+	document.body.removeChild(textArea);
+} 
+&lt;/script&gt;&lt;/li&gt;
+&lt;li&gt;&lt;div class=&quot;text-justify&quot;&gt;&lt;span id=&quot;fisher1978analysis&quot;&gt;Fisher, M. L., Nemhauser, G. L., &amp;amp; Wolsey, L. A. (1978). An analysis of approximations for maximizing submodular set functions – II. In &lt;i&gt;Polyhedral combinatorics&lt;/i&gt; (pp. 73–87). Springer.&lt;/span&gt;&lt;/div&gt;
+
+
+
+
+
+
+
+[&lt;a onclick=&quot;toggleBibtexfisher1978analysis()&quot;&gt;Show/hide BibTeX&lt;/a&gt;]
+[&lt;a onclick=&quot;copyBibtexfisher1978analysis()&quot;&gt;Copy BibTeX to clipboard&lt;/a&gt;]
+&lt;div id=&quot;afisher1978analysis&quot; style=&quot;display: none;&quot;&gt;
+&lt;pre id=&quot;bfisher1978analysis&quot;&gt;@incollection{fisher1978analysis,
+  title = {An analysis of approximations for maximizing submodular set functions -- {{II}}},
+  author = {Fisher, Marshall L and Nemhauser, George L and Wolsey, Laurence A},
+  booktitle = {Polyhedral combinatorics},
+  pages = {73--87},
+  year = {1978},
+  publisher = {Springer}
+}
+&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+function toggleBibtexfisher1978analysis(parameter) {
+    var x= document.getElementById('afisher1978analysis');
+    if (x.style.display === 'none') {
+        x.style.display = 'block';
+    } else {
+        x.style.display = 'none';
+    }
+}
+
+function copyBibtexfisher1978analysis(parameter) {
+	// https://stackoverflow.com/a/30810322/5471520
+	var textArea = document.createElement(&quot;textarea&quot;);
+	//
+	// *** This styling is an extra step which is likely not required. ***
+	//
+	// Why is it here? To ensure:
+	// 1. the element is able to have focus and selection.
+	// 2. if element was to flash render it has minimal visual impact.
+	// 3. less flakyness with selection and copying which **might** occur if
+	//    the textarea element is not visible.
+	//
+	// The likelihood is the element won't even render, not even a
+	// flash, so some of these are just precautions. However in
+	// Internet Explorer the element is visible whilst the popup
+	// box asking the user for permission for the web page to
+	// copy to the clipboard.
+	//
+
+	// Place in top-left corner of screen regardless of scroll position.
+	textArea.style.position = 'fixed';
+	textArea.style.top = 0;
+	textArea.style.left = 0;
+
+	// Ensure it has a small width and height. Setting to 1px / 1em
+	// doesn't work as this gives a negative w/h on some browsers.
+	textArea.style.width = '2em';
+	textArea.style.height = '2em';
+
+	// We don't need padding, reducing the size if it does flash render.
+	textArea.style.padding = 0;
+
+	// Clean up any borders.
+	textArea.style.border = 'none';
+	textArea.style.outline = 'none';
+	textArea.style.boxShadow = 'none';
+
+	// Avoid flash of white box if rendered for any reason.
+	textArea.style.background = 'transparent';
+
+	textArea.value = document.getElementById('bfisher1978analysis').textContent;
+
+	document.body.appendChild(textArea);
+	textArea.focus();
+	textArea.select();
+
+	try {
+	  var successful = document.execCommand('copy');
+	  var msg = successful ? 'successful' : 'unsuccessful';
+	  console.log('Copying text command was ' + msg);
+	} catch (err) {
+	  console.log('Oops, unable to copy');
+	}
+
+	document.body.removeChild(textArea);
+} 
+&lt;/script&gt;&lt;/li&gt;
+&lt;li&gt;&lt;div class=&quot;text-justify&quot;&gt;&lt;span id=&quot;corah2019distributed&quot;&gt;Corah, M., &amp;amp; Michael, N. (2019). Distributed matroid-constrained submodular maximization for multi-robot exploration: Theory and practice. &lt;i&gt;Autonomous Robots&lt;/i&gt;, &lt;i&gt;43&lt;/i&gt;(2), 485–501. https://doi.org/10.1007/s10514-018-9778-6&lt;/span&gt;&lt;/div&gt;
+
+
+
+    [&lt;a target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; href=&quot;http://doi.org/10.1007/s10514-018-9778-6&quot;&gt;DOI&lt;/a&gt;]
+
+
+
+
+
+[&lt;a onclick=&quot;toggleBibtexcorah2019distributed()&quot;&gt;Show/hide BibTeX&lt;/a&gt;]
+[&lt;a onclick=&quot;copyBibtexcorah2019distributed()&quot;&gt;Copy BibTeX to clipboard&lt;/a&gt;]
+&lt;div id=&quot;acorah2019distributed&quot; style=&quot;display: none;&quot;&gt;
+&lt;pre id=&quot;bcorah2019distributed&quot;&gt;@article{corah2019distributed,
+  title = {Distributed matroid-constrained submodular maximization for multi-robot exploration: Theory and practice},
+  author = {Corah, Micah and Michael, Nathan},
+  journal = {Autonomous Robots},
+  volume = {43},
+  number = {2},
+  pages = {485--501},
+  year = {2019},
+  doi = {10.1007/s10514-018-9778-6},
+  publisher = {Springer}
+}
+&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+function toggleBibtexcorah2019distributed(parameter) {
+    var x= document.getElementById('acorah2019distributed');
+    if (x.style.display === 'none') {
+        x.style.display = 'block';
+    } else {
+        x.style.display = 'none';
+    }
+}
+
+function copyBibtexcorah2019distributed(parameter) {
+	// https://stackoverflow.com/a/30810322/5471520
+	var textArea = document.createElement(&quot;textarea&quot;);
+	//
+	// *** This styling is an extra step which is likely not required. ***
+	//
+	// Why is it here? To ensure:
+	// 1. the element is able to have focus and selection.
+	// 2. if element was to flash render it has minimal visual impact.
+	// 3. less flakyness with selection and copying which **might** occur if
+	//    the textarea element is not visible.
+	//
+	// The likelihood is the element won't even render, not even a
+	// flash, so some of these are just precautions. However in
+	// Internet Explorer the element is visible whilst the popup
+	// box asking the user for permission for the web page to
+	// copy to the clipboard.
+	//
+
+	// Place in top-left corner of screen regardless of scroll position.
+	textArea.style.position = 'fixed';
+	textArea.style.top = 0;
+	textArea.style.left = 0;
+
+	// Ensure it has a small width and height. Setting to 1px / 1em
+	// doesn't work as this gives a negative w/h on some browsers.
+	textArea.style.width = '2em';
+	textArea.style.height = '2em';
+
+	// We don't need padding, reducing the size if it does flash render.
+	textArea.style.padding = 0;
+
+	// Clean up any borders.
+	textArea.style.border = 'none';
+	textArea.style.outline = 'none';
+	textArea.style.boxShadow = 'none';
+
+	// Avoid flash of white box if rendered for any reason.
+	textArea.style.background = 'transparent';
+
+	textArea.value = document.getElementById('bcorah2019distributed').textContent;
+
+	document.body.appendChild(textArea);
+	textArea.focus();
+	textArea.select();
+
+	try {
+	  var successful = document.execCommand('copy');
+	  var msg = successful ? 'successful' : 'unsuccessful';
+	  console.log('Copying text command was ' + msg);
+	} catch (err) {
+	  console.log('Oops, unable to copy');
+	}
+
+	document.body.removeChild(textArea);
+} 
+&lt;/script&gt;&lt;/li&gt;
+&lt;li&gt;&lt;div class=&quot;text-justify&quot;&gt;&lt;span id=&quot;delmerico2018comparison&quot;&gt;Delmerico, J., Isler, S., Sabzevari, R., &amp;amp; Scaramuzza, D. (2018). A comparison of volumetric information gain metrics for active 3D object reconstruction. &lt;i&gt;Autonomous Robots&lt;/i&gt;, &lt;i&gt;42&lt;/i&gt;(2), 197–208. https://doi.org/10.1007/s10514-017-9634-0&lt;/span&gt;&lt;/div&gt;
+
+
+
+    [&lt;a target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; href=&quot;http://doi.org/10.1007/s10514-017-9634-0&quot;&gt;DOI&lt;/a&gt;]
+
+
+
+
+
+[&lt;a onclick=&quot;toggleBibtexdelmerico2018comparison()&quot;&gt;Show/hide BibTeX&lt;/a&gt;]
+[&lt;a onclick=&quot;copyBibtexdelmerico2018comparison()&quot;&gt;Copy BibTeX to clipboard&lt;/a&gt;]
+&lt;div id=&quot;adelmerico2018comparison&quot; style=&quot;display: none;&quot;&gt;
+&lt;pre id=&quot;bdelmerico2018comparison&quot;&gt;@article{delmerico2018comparison,
+  title = {A comparison of volumetric information gain metrics for active 3D object reconstruction},
+  author = {Delmerico, Jeffrey and Isler, Stefan and Sabzevari, Reza and Scaramuzza, Davide},
+  journal = {Autonomous Robots},
+  volume = {42},
+  number = {2},
+  pages = {197--208},
+  year = {2018},
+  doi = {10.1007/s10514-017-9634-0},
+  publisher = {Springer}
+}
+&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+function toggleBibtexdelmerico2018comparison(parameter) {
+    var x= document.getElementById('adelmerico2018comparison');
+    if (x.style.display === 'none') {
+        x.style.display = 'block';
+    } else {
+        x.style.display = 'none';
+    }
+}
+
+function copyBibtexdelmerico2018comparison(parameter) {
+	// https://stackoverflow.com/a/30810322/5471520
+	var textArea = document.createElement(&quot;textarea&quot;);
+	//
+	// *** This styling is an extra step which is likely not required. ***
+	//
+	// Why is it here? To ensure:
+	// 1. the element is able to have focus and selection.
+	// 2. if element was to flash render it has minimal visual impact.
+	// 3. less flakyness with selection and copying which **might** occur if
+	//    the textarea element is not visible.
+	//
+	// The likelihood is the element won't even render, not even a
+	// flash, so some of these are just precautions. However in
+	// Internet Explorer the element is visible whilst the popup
+	// box asking the user for permission for the web page to
+	// copy to the clipboard.
+	//
+
+	// Place in top-left corner of screen regardless of scroll position.
+	textArea.style.position = 'fixed';
+	textArea.style.top = 0;
+	textArea.style.left = 0;
+
+	// Ensure it has a small width and height. Setting to 1px / 1em
+	// doesn't work as this gives a negative w/h on some browsers.
+	textArea.style.width = '2em';
+	textArea.style.height = '2em';
+
+	// We don't need padding, reducing the size if it does flash render.
+	textArea.style.padding = 0;
+
+	// Clean up any borders.
+	textArea.style.border = 'none';
+	textArea.style.outline = 'none';
+	textArea.style.boxShadow = 'none';
+
+	// Avoid flash of white box if rendered for any reason.
+	textArea.style.background = 'transparent';
+
+	textArea.value = document.getElementById('bdelmerico2018comparison').textContent;
+
+	document.body.appendChild(textArea);
+	textArea.focus();
+	textArea.select();
+
+	try {
+	  var successful = document.execCommand('copy');
+	  var msg = successful ? 'successful' : 'unsuccessful';
+	  console.log('Copying text command was ' + msg);
+	} catch (err) {
+	  console.log('Oops, unable to copy');
+	}
+
+	document.body.removeChild(textArea);
+} 
+&lt;/script&gt;&lt;/li&gt;&lt;/ol&gt;</content><author><name>Mikko Lauri</name></author><summary type="html">In this post, I give an overview of my recent paper (Lauri et al., 2020) on multi-robot next-best-view planning.</summary></entry><entry><title type="html">Active perception and decentralized decision-making</title><link href="https://laurimi.github.io/research/2020/06/13/active-perception.html" rel="alternate" type="text/html" title="Active perception and decentralized decision-making" /><published>2020-06-13T00:00:00+02:00</published><updated>2020-06-13T00:00:00+02:00</updated><id>https://laurimi.github.io/research/2020/06/13/active-perception</id><content type="html" xml:base="https://laurimi.github.io/research/2020/06/13/active-perception.html">&lt;p&gt;&lt;em&gt;In this post, I give an overview of my recent research on multi-agent active perception, published in the two recent papers &lt;a class=&quot;citation&quot; href=&quot;#Lauri_JAAMAS2020&quot;&gt;(Lauri et al., 2020; Lauri et al., 2019)&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;Active perception is a process by which an agent, a software agent or an embodied agent such as a robot, perceives its environment to reduce uncertainty in order to accomplish some task.
 For instance, a robot that wants to grab a cup from the kitchen table first needs to detect where the cup is, perhaps by moving around the table and capturing images as it goes.
