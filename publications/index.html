@@ -289,7 +289,94 @@
       <section class="page__content" itemprop="text">
         
         <h2 class="bibliography">2020</h2>
-<ol class="bibliography" reversed="reversed"><li><div class="text-justify"><span id="Lauri_RAL2020"><b>Lauri, M.</b>, Pajarinen, J., Peters, J., &amp; Frintrop, S. (2020). Multi-Sensor Next-Best-View Planning as Matroid-Constrained Submodular Maximization. <i>IEEE Robotics and Automation Letters</i>, <i>5</i>(4), 5323–5330. https://doi.org/10.1109/LRA.2020.3007445</span></div>
+<ol class="bibliography" reversed="reversed"><li><div class="text-justify"><span id="Lauri_NeurIPS2020"><b>Lauri, M.</b>, &amp; Oliehoek, F. (2020). Multi-agent active perception with prediction rewards. <i>To Appear in: Advances in Neural Information Processing Systems (NeurIPS)</i>.</span></div>
+
+
+
+
+
+
+
+[<a onclick="toggleBibtexLauri_NeurIPS2020()">Show/hide BibTeX</a>]
+[<a onclick="copyBibtexLauri_NeurIPS2020()">Copy BibTeX to clipboard</a>]
+<div id="aLauri_NeurIPS2020" style="display: none;">
+<pre id="bLauri_NeurIPS2020">@inproceedings{Lauri_NeurIPS2020,
+  author = {Lauri, Mikko and Oliehoek, Frans},
+  title = {Multi-agent active perception with prediction rewards},
+  booktitle = {{To appear in}: Advances in Neural Information Processing Systems (NeurIPS)},
+  year = {2020}
+}
+</pre>
+</div>
+
+<script>
+function toggleBibtexLauri_NeurIPS2020(parameter) {
+    var x= document.getElementById('aLauri_NeurIPS2020');
+    if (x.style.display === 'none') {
+        x.style.display = 'block';
+    } else {
+        x.style.display = 'none';
+    }
+}
+
+function copyBibtexLauri_NeurIPS2020(parameter) {
+	// https://stackoverflow.com/a/30810322/5471520
+	var textArea = document.createElement("textarea");
+	//
+	// *** This styling is an extra step which is likely not required. ***
+	//
+	// Why is it here? To ensure:
+	// 1. the element is able to have focus and selection.
+	// 2. if element was to flash render it has minimal visual impact.
+	// 3. less flakyness with selection and copying which **might** occur if
+	//    the textarea element is not visible.
+	//
+	// The likelihood is the element won't even render, not even a
+	// flash, so some of these are just precautions. However in
+	// Internet Explorer the element is visible whilst the popup
+	// box asking the user for permission for the web page to
+	// copy to the clipboard.
+	//
+
+	// Place in top-left corner of screen regardless of scroll position.
+	textArea.style.position = 'fixed';
+	textArea.style.top = 0;
+	textArea.style.left = 0;
+
+	// Ensure it has a small width and height. Setting to 1px / 1em
+	// doesn't work as this gives a negative w/h on some browsers.
+	textArea.style.width = '2em';
+	textArea.style.height = '2em';
+
+	// We don't need padding, reducing the size if it does flash render.
+	textArea.style.padding = 0;
+
+	// Clean up any borders.
+	textArea.style.border = 'none';
+	textArea.style.outline = 'none';
+	textArea.style.boxShadow = 'none';
+
+	// Avoid flash of white box if rendered for any reason.
+	textArea.style.background = 'transparent';
+
+	textArea.value = document.getElementById('bLauri_NeurIPS2020').textContent;
+
+	document.body.appendChild(textArea);
+	textArea.focus();
+	textArea.select();
+
+	try {
+	  var successful = document.execCommand('copy');
+	  var msg = successful ? 'successful' : 'unsuccessful';
+	  console.log('Copying text command was ' + msg);
+	} catch (err) {
+	  console.log('Oops, unable to copy');
+	}
+
+	document.body.removeChild(textArea);
+} 
+</script></li>
+<li><div class="text-justify"><span id="Lauri_RAL2020"><b>Lauri, M.</b>, Pajarinen, J., Peters, J., &amp; Frintrop, S. (2020). Multi-Sensor Next-Best-View Planning as Matroid-Constrained Submodular Maximization. <i>IEEE Robotics and Automation Letters</i>, <i>5</i>(4), 5323–5330. https://doi.org/10.1109/LRA.2020.3007445</span></div>
 
 
 
