@@ -16,4 +16,10 @@ var store = [{
         "tags": [],
         "url": "https://laurimi.github.io/research/2020/07/04/multirobot-nbv.html",
         "teaser": null
+      },{
+        "title": "New results on multi-agent active perception at NeurIPS 2020",
+        "excerpt":"We have a new paper entitled “Multi-agent active perception with prediction rewards” up on arXiv due to appear later at the 34th Conference on Neural Information Processing Systems (NeurIPS 2020). This is research done together with Frans A. Oliehoek. Summary We propose a reduction from a Dec-POMDP with a convex...","categories": ["research"],
+        "tags": [],
+        "url": "https://laurimi.github.io/research/2020/10/23/neurips.html",
+        "teaser": null
       }]

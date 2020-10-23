@@ -1,0 +1,417 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.2 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>New results on multi-agent active perception at NeurIPS 2020 | Mikko Lauri</title>
+<meta name="description" content="We have a new paper entitled “Multi-agent active perception with prediction rewards” up on arXiv due to appear later at the 34th Conference on Neural Information Processing Systems (NeurIPS 2020).  This is research done together with Frans A. Oliehoek. ">
+
+
+  <meta name="author" content="Mikko Lauri">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Mikko Lauri">
+<meta property="og:title" content="New results on multi-agent active perception at NeurIPS 2020">
+<meta property="og:url" content="https://laurimi.github.io/research/2020/10/23/neurips.html">
+
+
+  <meta property="og:description" content="We have a new paper entitled “Multi-agent active perception with prediction rewards” up on arXiv due to appear later at the 34th Conference on Neural Information Processing Systems (NeurIPS 2020).  This is research done together with Frans A. Oliehoek. ">
+
+
+
+  <meta property="og:image" content="https://laurimi.github.io/assets/images/bio-photo.png">
+
+
+
+
+
+  <meta property="article:published_time" content="2020-10-23T00:00:00+02:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://laurimi.github.io/research/2020/10/23/neurips.html">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Mikko Lauri",
+      "url": "https://laurimi.github.io/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Mikko Lauri Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="stylesheet" href="/assets/css/academicons.css"/>
+
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Mikko Lauri
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/">Home</a>
+            </li><li class="masthead__menu-item">
+              <a href="/research">Research</a>
+            </li><li class="masthead__menu-item">
+              <a href="/publications/">Publications</a>
+            </li><li class="masthead__menu-item">
+              <a href="/posts">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/bio">Bio</a>
+            </li><li class="masthead__menu-item">
+              <a href="/contact">Contact</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/bio-photo.png" alt="Mikko Lauri" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Mikko Lauri</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Researcher in Computer Science and Robotics. Multi-agent decision-making under uncertainty, active perception, and deep learning for robot vision.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Hamburg, Germany</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="https://github.com/laurimi" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/mikko_lauri" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+            <li><a href="https://scholar.google.com/citations?user=Ark4dHoAAAAJ" rel="nofollow noopener noreferrer"><i class="ai ai-google-scholar ai" aria-hidden="true"></i><span class="label">Google Scholar</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="New results on multi-agent active perception at NeurIPS 2020">
+    <meta itemprop="description" content="We have a new paper entitled “Multi-agent active perception with prediction rewards” up on arXiv due to appear later at the 34th Conference on Neural Information Processing Systems (NeurIPS 2020). This is research done together with Frans A. Oliehoek.">
+    <meta itemprop="datePublished" content="2020-10-23T00:00:00+02:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">New results on multi-agent active perception at NeurIPS 2020
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>We have a new paper entitled “Multi-agent active perception with prediction rewards” up on <a href="https://arxiv.org/abs/2010.11835">arXiv</a> due to appear later at the <a href="https://neurips.cc/Conferences/2020">34th Conference on Neural Information Processing Systems (NeurIPS 2020)</a>. 
+This is research done together with <a href="http://www.fransoliehoek.net/" target="_blank">Frans A. Oliehoek</a>.</p>
+
+<h1 id="summary">Summary</h1>
+<p>We propose a reduction from a Dec-POMDP with a convex information reward to a standard Dec-POMDP. Now all standard Dec-POMDP algorithms are applicable to multi-agent active perception problems, and we can solve larger scale problems.</p>
+
+<h1 id="in-more-detail">In more detail</h1>
+<p>The setting of the paper is illustrated in the figure below.
+The multi-agent active perception problem consists of two phases: the decentralized observation gathering phase (left) where agents act independently based on their private information, and the centralized inference phase (right) after the end of the task, where a belief state is computed and the agents are rewarded according to the informativeness of the belief state.
+A solution is a set of individual policies, one for each of the agents, that an agent can execute in a decentralized manner.
+At the end of the task after a finite number of time steps, the observations collected by the agents are collected at a central server for inference.
+This enables computation of a state estimate, or belief state, and the overall reward of the agent team is determined by the informativeness of the state estimate, measured for instance by the negative entropy.
+This type of problem formulation could be applied to settings like search and rescue robotics, multi-robot environment monitoring missions, or distributed sensor networks.</p>
+
+<figure>
+    <a href="/assets/images/neurips2020/thumbnail.png"><img src="/assets/images/neurips2020/thumbnail.png" /></a>
+    <figcaption>The multi-agent active perception problem.</figcaption>
+</figure>
+
+<p>This problem can be modelled as a decentralized partially observable Markov decision process (Dec-POMDP) with a special kind of information reward, as I did <a href="/research/2020/06/13/active-perception.html">in my earlier work</a>.
+Because the information reward depends on what the agents <em>know</em> about the state rather than what the state <em>is</em>, most standard algorithms for Dec-POMDPs are not applicable to this problem, and indeed we proposed some specialized algorithms in earlier work to tackle this.
+However, one of the issues of these algorithms is that to search for policies, we have to compute and store in memory all of the possible state estimates that could be reached during the task.
+This is very memory intensive, and as a result these algorithms have trouble scaling up.</p>
+
+<p>In the new paper, we address these two issues in a neat way: we propose a conversion of the entire problem into a completely standard form Dec-POMDP, with the typical kind of reward function!
+This means that all of the standard algorithms for Dec-POMDPs are now applicable to solve multi-agent active perception problems.
+Modern Dec-POMDP solvers do not need to compute all reachable belief states, but can instead rely on techniques such as Monte Carlo sampling to evaluate and search for policies.
+Technically, we achieve the conversion by introducing so-called <em>prediction actions</em>, inspired by similar earlier work in centralize control settings.
+To put things briefly and informally, the prediction actions “decentralize” the state estimation problem in a way that each agent will also make a prediction about the true state at the end of the observation gathering phase.</p>
+
+<p>The conversion we propose induces a loss, but we show that the loss is bounded and that there are cases where the loss is zero.
+We show experimentally that by our conversion, scalability in the planning horizon is greatly improved compared to previous methods.</p>
+
+<p>I’m also excited about the opportunities for future research the results open up.
+By linking multi-agent active perception to standard Dec-POMDPs, any advances in one are immediately transferable to the other.
+Standard Dec-POMDPs are also the most popular underlying formalism for multi-agent reinforcement learning under partial observability, so by this reduction we potentially enable <em>learning for multi-agent active perception</em>.
+Looking deeper at when the loss due to the conversion is small could further boost the practical applicability of the method.</p>
+
+<p>You can read about the details <a href="https://arxiv.org/abs/2010.11835">in the paper</a>, and try out the conversion and a solver algorithm by checking out <a href="https://github.com/laurimi/multiagent-prediction-reward">the code</a>.</p>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-10-23T00:00:00+02:00">October 23, 2020</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=New+results+on+multi-agent+active+perception+at%C2%A0NeurIPS+2020%20https%3A%2F%2Flaurimi.github.io%2Fresearch%2F2020%2F10%2F23%2Fneurips.html" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Flaurimi.github.io%2Fresearch%2F2020%2F10%2F23%2Fneurips.html" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Flaurimi.github.io%2Fresearch%2F2020%2F10%2F23%2Fneurips.html" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/research/2020/07/04/multirobot-nbv.html" class="pagination--pager" title="Multi-robot next-best-view planning
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 Mikko Lauri. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
