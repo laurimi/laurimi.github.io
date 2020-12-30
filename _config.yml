@@ -60,7 +60,7 @@ author:
       url: "https://twitter.com/mikko_lauri"
     - label: "Google Scholar"
       icon: "ai ai-google-scholar ai"
-      url: "https://scholar.google.com/citations?user=Ark4dHoAAAAJ"
+      url: "https://scholar.google.com/citations?user=Ark4dHoAAAAJ&view_op=list_works&sortby=pubdate"
 
 defaults:
   # _posts
