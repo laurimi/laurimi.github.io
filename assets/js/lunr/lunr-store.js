@@ -22,4 +22,10 @@ var store = [{
         "tags": [],
         "url": "https://laurimi.github.io/research/2020/10/23/neurips.html",
         "teaser": null
+      },{
+        "title": "Talk on pose estimation and audio-visual paper at ICPR 2020",
+        "excerpt":"With Ge Gao, we are giving a workshop talk at the ``Perception and Modelling for Manipulation of Objects’’ workshop organized at the 25th International Confererence on Pattern Recognition (ICPR 2020). Check out the talk if you are interested in applying deep learning on point cloud data for object pose estimation,...","categories": ["news,","research"],
+        "tags": [],
+        "url": "https://laurimi.github.io/news,/research/2020/12/30/pammo.html",
+        "teaser": null
       }]
