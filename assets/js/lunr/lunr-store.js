@@ -28,4 +28,10 @@ var store = [{
         "tags": [],
         "url": "https://laurimi.github.io/news,/research/2020/12/30/pammo.html",
         "teaser": null
+      },{
+        "title": "Interview on Data Skeptic podcast",
+        "excerpt":"I recently appeared on the Data Skeptic podcast to talk about my research into decentralized information gathering and multi-agent active perception. You can check out the podcast and the episode here. For more information about the work discussed, you can read the summary post about the work here. The latest...","categories": ["news"],
+        "tags": [],
+        "url": "https://laurimi.github.io/news/2021/02/25/ds.html",
+        "teaser": null
       }]
