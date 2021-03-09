@@ -288,7 +288,103 @@
 
       <section class="page__content" itemprop="text">
         
-        <h2 class="bibliography">2020</h2>
+        <h2 class="bibliography">2021</h2>
+<ol class="bibliography" reversed="reversed"><li><div class="text-justify"><span id="Gao_ICRA2020">Gao, G., <b>Lauri, M.</b>, Hu, X., Zhang, J., &amp; Frintrop, S. (2021, June). CloudAAE: Learning 6D Object Pose Regression with On-line Data Synthesis on Point Clouds. <i>To Appear in Proc. IEEE Intl. Conf. on Robotics and Automation (ICRA)</i>.</span></div>
+
+
+
+
+	[<a target="_blank" rel="noopener noreferrer" href="https://arxiv.org/abs/2103.01977">arXiv</a>]
+
+
+	[<a target="_blank" rel="noopener noreferrer" href="https://github.com/GeeeG/CloudAAE">Code</a>]
+
+
+
+[<a onclick="toggleBibtexGao_ICRA2020()">Show/hide BibTeX</a>]
+[<a onclick="copyBibtexGao_ICRA2020()">Copy BibTeX to clipboard</a>]
+<div id="aGao_ICRA2020" style="display: none;">
+<pre id="bGao_ICRA2020">@inproceedings{Gao_ICRA2020,
+  author = {Gao, Ge and Lauri, Mikko and Hu, Xiaolin and Zhang, Jianwei and Frintrop, Simone},
+  title = {{CloudAAE: Learning 6D Object Pose Regression with On-line Data Synthesis on Point Clouds}},
+  booktitle = {to appear in Proc. IEEE Intl. Conf. on Robotics and Automation (ICRA)},
+  year = {2021},
+  month = jun,
+  address = {Xi'an, China},
+  eprint = {2103.01977},
+  codelink = {https://github.com/GeeeG/CloudAAE}
+}
+</pre>
+</div>
+
+<script>
+function toggleBibtexGao_ICRA2020(parameter) {
+    var x= document.getElementById('aGao_ICRA2020');
+    if (x.style.display === 'none') {
+        x.style.display = 'block';
+    } else {
+        x.style.display = 'none';
+    }
+}
+
+function copyBibtexGao_ICRA2020(parameter) {
+	// https://stackoverflow.com/a/30810322/5471520
+	var textArea = document.createElement("textarea");
+	//
+	// *** This styling is an extra step which is likely not required. ***
+	//
+	// Why is it here? To ensure:
+	// 1. the element is able to have focus and selection.
+	// 2. if element was to flash render it has minimal visual impact.
+	// 3. less flakyness with selection and copying which **might** occur if
+	//    the textarea element is not visible.
+	//
+	// The likelihood is the element won't even render, not even a
+	// flash, so some of these are just precautions. However in
+	// Internet Explorer the element is visible whilst the popup
+	// box asking the user for permission for the web page to
+	// copy to the clipboard.
+	//
+
+	// Place in top-left corner of screen regardless of scroll position.
+	textArea.style.position = 'fixed';
+	textArea.style.top = 0;
+	textArea.style.left = 0;
+
+	// Ensure it has a small width and height. Setting to 1px / 1em
+	// doesn't work as this gives a negative w/h on some browsers.
+	textArea.style.width = '2em';
+	textArea.style.height = '2em';
+
+	// We don't need padding, reducing the size if it does flash render.
+	textArea.style.padding = 0;
+
+	// Clean up any borders.
+	textArea.style.border = 'none';
+	textArea.style.outline = 'none';
+	textArea.style.boxShadow = 'none';
+
+	// Avoid flash of white box if rendered for any reason.
+	textArea.style.background = 'transparent';
+
+	textArea.value = document.getElementById('bGao_ICRA2020').textContent;
+
+	document.body.appendChild(textArea);
+	textArea.focus();
+	textArea.select();
+
+	try {
+	  var successful = document.execCommand('copy');
+	  var msg = successful ? 'successful' : 'unsuccessful';
+	  console.log('Copying text command was ' + msg);
+	} catch (err) {
+	  console.log('Oops, unable to copy');
+	}
+
+	document.body.removeChild(textArea);
+} 
+</script></li></ol>
+<h2 class="bibliography">2020</h2>
 <ol class="bibliography" reversed="reversed"><li><div class="text-justify"><span id="Nguyen_ICPR2020">Nguyen, Q., Richter, J., <b>Lauri, M.</b>, Gerkmann, T., &amp; Frintrop, S. (2020). Improving Mix-And-Separate Training in Audio-Visual Sound Source Separation with an Object Prior. <i>To Appear in Proceedings of the 25th International Confererence on Pattern Recognition (ICPR 2020)</i>.</span></div>
 
 	[<a target="_blank" rel="noopener noreferrer" href="/repository/Nguyen_ICPR2020.pdf">PDF</a>]
@@ -668,7 +764,7 @@ function copyBibtexLauri_JAAMAS2020(parameter) {
 	document.body.removeChild(textArea);
 } 
 </script></li>
-<li><div class="text-justify"><span id="Gao_ICRA2020">Gao, G., <b>Lauri, M.</b>, Wang, Y., Hu, X., Zhang, J., &amp; Frintrop, S. (2020, June). 6D Object Pose Regression via Supervised Learning on Point Clouds. <i>Proc. IEEE Intl. Conf. on Robotics and Automation (ICRA)</i>.</span></div>
+<li><div class="text-justify"><span id="Gao_ICRA2021">Gao, G., <b>Lauri, M.</b>, Wang, Y., Hu, X., Zhang, J., &amp; Frintrop, S. (2020, June). 6D Object Pose Regression via Supervised Learning on Point Clouds. <i>Proc. IEEE Intl. Conf. on Robotics and Automation (ICRA)</i>.</span></div>
 
 
 
@@ -682,10 +778,10 @@ function copyBibtexLauri_JAAMAS2020(parameter) {
 	[<a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/watch?v=OhNMngzxFDQ">Video</a>]
 
 
-[<a onclick="toggleBibtexGao_ICRA2020()">Show/hide BibTeX</a>]
-[<a onclick="copyBibtexGao_ICRA2020()">Copy BibTeX to clipboard</a>]
-<div id="aGao_ICRA2020" style="display: none;">
-<pre id="bGao_ICRA2020">@inproceedings{Gao_ICRA2020,
+[<a onclick="toggleBibtexGao_ICRA2021()">Show/hide BibTeX</a>]
+[<a onclick="copyBibtexGao_ICRA2021()">Copy BibTeX to clipboard</a>]
+<div id="aGao_ICRA2021" style="display: none;">
+<pre id="bGao_ICRA2021">@inproceedings{Gao_ICRA2021,
   author = {Gao, Ge and Lauri, Mikko and Wang, Yulong and Hu, Xiaolin and Zhang, Jianwei and Frintrop, Simone},
   title = {{6D Object Pose Regression via Supervised Learning on Point Clouds}},
   booktitle = {Proc. IEEE Intl. Conf. on Robotics and Automation (ICRA)},
@@ -700,8 +796,8 @@ function copyBibtexLauri_JAAMAS2020(parameter) {
 </div>
 
 <script>
-function toggleBibtexGao_ICRA2020(parameter) {
-    var x= document.getElementById('aGao_ICRA2020');
+function toggleBibtexGao_ICRA2021(parameter) {
+    var x= document.getElementById('aGao_ICRA2021');
     if (x.style.display === 'none') {
         x.style.display = 'block';
     } else {
@@ -709,7 +805,7 @@ function toggleBibtexGao_ICRA2020(parameter) {
     }
 }
 
-function copyBibtexGao_ICRA2020(parameter) {
+function copyBibtexGao_ICRA2021(parameter) {
 	// https://stackoverflow.com/a/30810322/5471520
 	var textArea = document.createElement("textarea");
 	//
@@ -749,7 +845,7 @@ function copyBibtexGao_ICRA2020(parameter) {
 	// Avoid flash of white box if rendered for any reason.
 	textArea.style.background = 'transparent';
 
-	textArea.value = document.getElementById('bGao_ICRA2020').textContent;
+	textArea.value = document.getElementById('bGao_ICRA2021').textContent;
 
 	document.body.appendChild(textArea);
 	textArea.focus();

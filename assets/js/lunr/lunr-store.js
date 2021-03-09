@@ -34,4 +34,10 @@ var store = [{
         "tags": [],
         "url": "https://laurimi.github.io/news/2021/02/25/ds.html",
         "teaser": null
+      },{
+        "title": "Object pose estimation with on-line data synthesis using point clouds at ICRA 2021",
+        "excerpt":"With Ge Gao, Xiaolin Hu, Jianwei Zhang, and Simone Frintrop, we propose an augmented autoencoder based approach for estimating the translation and rotation of objects given point cloud data. I am happy to announce that this paper is now accepted for presentation at the International Conference on Robotics and Automation...","categories": ["news"],
+        "tags": [],
+        "url": "https://laurimi.github.io/news/2021/03/09/icra2021.html",
+        "teaser": null
       }]
