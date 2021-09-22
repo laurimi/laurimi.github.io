@@ -289,7 +289,101 @@
       <section class="page__content" itemprop="text">
         
         <h2 class="bibliography">2021</h2>
-<ol class="bibliography" reversed="reversed"><li><div class="text-justify"><span id="Gao_ICRA2020">Gao, G., <b>Lauri, M.</b>, Hu, X., Zhang, J., &amp; Frintrop, S. (2021, June). CloudAAE: Learning 6D Object Pose Regression with On-line Data Synthesis on Point Clouds. <i>To Appear in Proc. IEEE Intl. Conf. on Robotics and Automation (ICRA)</i>.</span></div>
+<ol class="bibliography" reversed="reversed"><li><div class="text-justify"><span id="Banik_ICVS2021">Banik, S., <b>Lauri, M.</b>, Knoll, A. C., &amp; Frintrop, S. (2021). Object Localization with Attribute Preference Based on Top-Down Attention. <i>Proc. 13th International Conference on Computer Vision Systems (ICVS 2021)</i>, 28–40. https://doi.org/10.1007/978-3-030-87156-7_3</span></div>
+
+
+	[<a target="_blank" rel="noopener noreferrer" href="https://www.inf.uni-hamburg.de/en/inst/ab/cv/media/banik-etal-icvs2021.pdf">URL</a>]
+
+
+    [<a target="_blank" rel="noopener noreferrer" href="https://doi.org/10.1007/978-3-030-87156-7_3">DOI</a>]
+
+
+
+
+
+[<a onclick="toggleBibtexBanik_ICVS2021()">Show/hide BibTeX</a>]
+[<a onclick="copyBibtexBanik_ICVS2021()">Copy BibTeX to clipboard</a>]
+<div id="aBanik_ICVS2021" style="display: none;">
+<pre id="bBanik_ICVS2021">@inproceedings{Banik_ICVS2021,
+  author = {Banik, Soubarna and Lauri, Mikko and Knoll, Alois C. and Frintrop, Simone},
+  title = {Object Localization with Attribute Preference Based on Top-Down Attention},
+  booktitle = {Proc. 13th International Conference on Computer Vision Systems (ICVS 2021)},
+  pages = {28--40},
+  year = {2021},
+  doi = {10.1007/978-3-030-87156-7\_3},
+  url = {https://www.inf.uni-hamburg.de/en/inst/ab/cv/media/banik-etal-icvs2021.pdf}
+}
+</pre>
+</div>
+
+<script>
+function toggleBibtexBanik_ICVS2021(parameter) {
+    var x= document.getElementById('aBanik_ICVS2021');
+    if (x.style.display === 'none') {
+        x.style.display = 'block';
+    } else {
+        x.style.display = 'none';
+    }
+}
+
+function copyBibtexBanik_ICVS2021(parameter) {
+	// https://stackoverflow.com/a/30810322/5471520
+	var textArea = document.createElement("textarea");
+	//
+	// *** This styling is an extra step which is likely not required. ***
+	//
+	// Why is it here? To ensure:
+	// 1. the element is able to have focus and selection.
+	// 2. if element was to flash render it has minimal visual impact.
+	// 3. less flakyness with selection and copying which **might** occur if
+	//    the textarea element is not visible.
+	//
+	// The likelihood is the element won't even render, not even a
+	// flash, so some of these are just precautions. However in
+	// Internet Explorer the element is visible whilst the popup
+	// box asking the user for permission for the web page to
+	// copy to the clipboard.
+	//
+
+	// Place in top-left corner of screen regardless of scroll position.
+	textArea.style.position = 'fixed';
+	textArea.style.top = 0;
+	textArea.style.left = 0;
+
+	// Ensure it has a small width and height. Setting to 1px / 1em
+	// doesn't work as this gives a negative w/h on some browsers.
+	textArea.style.width = '2em';
+	textArea.style.height = '2em';
+
+	// We don't need padding, reducing the size if it does flash render.
+	textArea.style.padding = 0;
+
+	// Clean up any borders.
+	textArea.style.border = 'none';
+	textArea.style.outline = 'none';
+	textArea.style.boxShadow = 'none';
+
+	// Avoid flash of white box if rendered for any reason.
+	textArea.style.background = 'transparent';
+
+	textArea.value = document.getElementById('bBanik_ICVS2021').textContent;
+
+	document.body.appendChild(textArea);
+	textArea.focus();
+	textArea.select();
+
+	try {
+	  var successful = document.execCommand('copy');
+	  var msg = successful ? 'successful' : 'unsuccessful';
+	  console.log('Copying text command was ' + msg);
+	} catch (err) {
+	  console.log('Oops, unable to copy');
+	}
+
+	document.body.removeChild(textArea);
+} 
+</script></li>
+<li><div class="text-justify"><span id="Gao_ICRA2020">Gao, G., <b>Lauri, M.</b>, Hu, X., Zhang, J., &amp; Frintrop, S. (2021, June). CloudAAE: Learning 6D Object Pose Regression with On-line Data Synthesis on Point Clouds. <i>To Appear in Proc. IEEE Intl. Conf. on Robotics and Automation (ICRA 2021)</i>.</span></div>
 
 
 
@@ -307,7 +401,7 @@
 <pre id="bGao_ICRA2020">@inproceedings{Gao_ICRA2020,
   author = {Gao, Ge and Lauri, Mikko and Hu, Xiaolin and Zhang, Jianwei and Frintrop, Simone},
   title = {{CloudAAE: Learning 6D Object Pose Regression with On-line Data Synthesis on Point Clouds}},
-  booktitle = {to appear in Proc. IEEE Intl. Conf. on Robotics and Automation (ICRA)},
+  booktitle = {to appear in Proc. IEEE Intl. Conf. on Robotics and Automation (ICRA 2021)},
   year = {2021},
   month = jun,
   address = {Xi'an, China},
@@ -385,11 +479,13 @@ function copyBibtexGao_ICRA2020(parameter) {
 } 
 </script></li></ol>
 <h2 class="bibliography">2020</h2>
-<ol class="bibliography" reversed="reversed"><li><div class="text-justify"><span id="Nguyen_ICPR2020">Nguyen, Q., Richter, J., <b>Lauri, M.</b>, Gerkmann, T., &amp; Frintrop, S. (2020). Improving Mix-And-Separate Training in Audio-Visual Sound Source Separation with an Object Prior. <i>To Appear in Proceedings of the 25th International Confererence on Pattern Recognition (ICPR 2020)</i>.</span></div>
+<ol class="bibliography" reversed="reversed"><li><div class="text-justify"><span id="Nguyen_ICPR2020">Nguyen, Q., Richter, J., <b>Lauri, M.</b>, Gerkmann, T., &amp; Frintrop, S. (2020). Improving Mix-And-Separate Training in Audio-Visual Sound Source Separation with an Object Prior. <i>Proc. 25th International Confererence on Pattern Recognition (ICPR 2020)</i>, 5844–5851. https://doi.org/10.1109/ICPR48806.2021.9412174</span></div>
 
 	[<a target="_blank" rel="noopener noreferrer" href="/repository/Nguyen_ICPR2020.pdf">PDF</a>]
 
 
+
+    [<a target="_blank" rel="noopener noreferrer" href="https://doi.org/10.1109/ICPR48806.2021.9412174">DOI</a>]
 
 
 
@@ -401,8 +497,10 @@ function copyBibtexGao_ICRA2020(parameter) {
 <pre id="bNguyen_ICPR2020">@inproceedings{Nguyen_ICPR2020,
   author = {Nguyen, Quan and Richter, Julius and Lauri, Mikko and Gerkmann, Timo and Frintrop, Simone},
   title = {Improving Mix-And-Separate Training in Audio-Visual Sound Source Separation with an Object Prior},
-  booktitle = {to appear in Proceedings of the 25th International Confererence on Pattern Recognition (ICPR 2020)},
-  year = {2020}
+  booktitle = {Proc. 25th International Confererence on Pattern Recognition (ICPR 2020)},
+  pages = {5844--5851},
+  year = {2020},
+  doi = {10.1109/ICPR48806.2021.9412174}
 }
 </pre>
 </div>
@@ -575,7 +673,7 @@ function copyBibtexLauri_NeurIPS2020(parameter) {
 
 
 
-    [<a target="_blank" rel="noopener noreferrer" href="http://doi.org/10.1109/LRA.2020.3007445">DOI</a>]
+    [<a target="_blank" rel="noopener noreferrer" href="https://doi.org/10.1109/LRA.2020.3007445">DOI</a>]
 
 
 	[<a target="_blank" rel="noopener noreferrer" href="https://arxiv.org/abs/2007.02084">arXiv</a>]
@@ -673,7 +771,7 @@ function copyBibtexLauri_RAL2020(parameter) {
 
 
 
-    [<a target="_blank" rel="noopener noreferrer" href="http://doi.org/10.1007/S10458-020-09467-6">DOI</a>]
+    [<a target="_blank" rel="noopener noreferrer" href="https://doi.org/10.1007/S10458-020-09467-6">DOI</a>]
 
 
 
@@ -1066,7 +1164,7 @@ function copyBibtexKarl_KONVENS2019(parameter) {
 
 
 
-    [<a target="_blank" rel="noopener noreferrer" href="http://doi.org/10.1109/IROS40897.2019.8967805">DOI</a>]
+    [<a target="_blank" rel="noopener noreferrer" href="https://doi.org/10.1109/IROS40897.2019.8967805">DOI</a>]
 
 
 
@@ -1164,7 +1262,7 @@ function copyBibtexSchmid_IROS2019(parameter) {
 
 
 
-    [<a target="_blank" rel="noopener noreferrer" href="http://doi.org/10.1007/978-3-030-29911-8_15">DOI</a>]
+    [<a target="_blank" rel="noopener noreferrer" href="https://doi.org/10.1007/978-3-030-29911-8_15">DOI</a>]
 
 
 
@@ -1528,7 +1626,7 @@ function copyBibtexBanik_arxiv2018(parameter) {
 
 
 
-    [<a target="_blank" rel="noopener noreferrer" href="http://doi.org/10.1007/978-3-030-11009-3_44">DOI</a>]
+    [<a target="_blank" rel="noopener noreferrer" href="https://doi.org/10.1007/978-3-030-11009-3_44">DOI</a>]
 
 
 
@@ -1623,7 +1721,7 @@ function copyBibtexGao_ECCV2018WS(parameter) {
 
 
 
-    [<a target="_blank" rel="noopener noreferrer" href="http://doi.org/10.1007/s10472-016-9527-5">DOI</a>]
+    [<a target="_blank" rel="noopener noreferrer" href="https://doi.org/10.1007/s10472-016-9527-5">DOI</a>]
 
 
 
@@ -1716,7 +1814,7 @@ function copyBibtexLauri_AMAI2017(parameter) {
 
 
 
-    [<a target="_blank" rel="noopener noreferrer" href="http://doi.org/10.1109/IROS.2017.8206374">DOI</a>]
+    [<a target="_blank" rel="noopener noreferrer" href="https://doi.org/10.1109/IROS.2017.8206374">DOI</a>]
 
 
 	[<a target="_blank" rel="noopener noreferrer" href="https://arxiv.org/abs/1704.04054">arXiv</a>]
@@ -1815,7 +1913,7 @@ function copyBibtexGao_IROS2017(parameter) {
 
 
 
-    [<a target="_blank" rel="noopener noreferrer" href="http://doi.org/10.1007/978-3-319-59126-1_22">DOI</a>]
+    [<a target="_blank" rel="noopener noreferrer" href="https://doi.org/10.1007/978-3-319-59126-1_22">DOI</a>]
 
 
 	[<a target="_blank" rel="noopener noreferrer" href="https://arxiv.org/abs/1704.03706">arXiv</a>]
@@ -1914,7 +2012,7 @@ function copyBibtexLauri_SCIA2017(parameter) {
 
 
 
-    [<a target="_blank" rel="noopener noreferrer" href="http://doi.org/10.1109/ICRA.2017.7989104">DOI</a>]
+    [<a target="_blank" rel="noopener noreferrer" href="https://doi.org/10.1109/ICRA.2017.7989104">DOI</a>]
 
 
 	[<a target="_blank" rel="noopener noreferrer" href="https://arxiv.org/abs/1703.02610">arXiv</a>]
@@ -2011,7 +2109,7 @@ function copyBibtexLauri_ICRA2017(parameter) {
 
 
 
-    [<a target="_blank" rel="noopener noreferrer" href="http://doi.org/10.1016/j.robot.2016.06.008">DOI</a>]
+    [<a target="_blank" rel="noopener noreferrer" href="https://doi.org/10.1016/j.robot.2016.06.008">DOI</a>]
 
 
 	[<a target="_blank" rel="noopener noreferrer" href="https://arxiv.org/abs/1502.02474">arXiv</a>]
@@ -2388,7 +2486,7 @@ function copyBibtexRopponen_PlanRob2016(parameter) {
 
 
 
-    [<a target="_blank" rel="noopener noreferrer" href="http://doi.org/10.1109/ECC.2015.7330889">DOI</a>]
+    [<a target="_blank" rel="noopener noreferrer" href="https://doi.org/10.1109/ECC.2015.7330889">DOI</a>]
 
 
 
@@ -2481,7 +2579,7 @@ function copyBibtexKolu_ECC2015(parameter) {
 
 
 
-    [<a target="_blank" rel="noopener noreferrer" href="http://doi.org/10.1109/ICRA.2015.7139867">DOI</a>]
+    [<a target="_blank" rel="noopener noreferrer" href="https://doi.org/10.1109/ICRA.2015.7139867">DOI</a>]
 
 
 	[<a target="_blank" rel="noopener noreferrer" href="https://arxiv.org/abs/1603.04586">arXiv</a>]
@@ -2668,7 +2766,7 @@ function copyBibtexLauri_ICRA2015WS(parameter) {
 
 
 
-    [<a target="_blank" rel="noopener noreferrer" href="http://doi.org/10.1016/j.ifacol.2015.08.083">DOI</a>]
+    [<a target="_blank" rel="noopener noreferrer" href="https://doi.org/10.1016/j.ifacol.2015.08.083">DOI</a>]
 
 
 
@@ -2762,7 +2860,7 @@ function copyBibtexMelin_ACNAAV2015(parameter) {
 
 
 
-    [<a target="_blank" rel="noopener noreferrer" href="http://doi.org/10.4233/uuid:77aa1242-b1b3-453c-8aa7-5acb09ac219b">DOI</a>]
+    [<a target="_blank" rel="noopener noreferrer" href="https://doi.org/10.4233/uuid:77aa1242-b1b3-453c-8aa7-5acb09ac219b">DOI</a>]
 
 
 
@@ -2947,7 +3045,7 @@ function copyBibtexLauri_ICRA2014WS(parameter) {
 
 
 
-    [<a target="_blank" rel="noopener noreferrer" href="http://doi.org/10.1007/s10472-013-9361-y">DOI</a>]
+    [<a target="_blank" rel="noopener noreferrer" href="https://doi.org/10.1007/s10472-013-9361-y">DOI</a>]
 
 
 
@@ -3222,7 +3320,7 @@ function copyBibtexLauri_IMEKO2012(parameter) {
 
 
 
-    [<a target="_blank" rel="noopener noreferrer" href="http://doi.org/10.1109/TIM.2011.2123190">DOI</a>]
+    [<a target="_blank" rel="noopener noreferrer" href="https://doi.org/10.1109/TIM.2011.2123190">DOI</a>]
 
 
 
@@ -3316,7 +3414,7 @@ function copyBibtexBjorninen_TIM2011(parameter) {
 
 
 
-    [<a target="_blank" rel="noopener noreferrer" href="http://doi.org/10.1007/s00521-010-0497-y">DOI</a>]
+    [<a target="_blank" rel="noopener noreferrer" href="https://doi.org/10.1007/s00521-010-0497-y">DOI</a>]
 
 
 
@@ -3681,7 +3779,7 @@ function copyBibtexLauri_MSPI2010(parameter) {
 
 
 
-    [<a target="_blank" rel="noopener noreferrer" href="http://doi.org/10.1007/978-3-642-03969-0_17">DOI</a>]
+    [<a target="_blank" rel="noopener noreferrer" href="https://doi.org/10.1007/978-3-642-03969-0_17">DOI</a>]
 
 
 
