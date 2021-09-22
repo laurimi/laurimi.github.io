@@ -8,7 +8,7 @@
 	[<a target="_blank" rel="noopener noreferrer" href="{{entry.url}}">URL</a>]
 {% endif %}
 {% if entry.doi %}
-    [<a target="_blank" rel="noopener noreferrer" href="{{ entry.doi | prepend: 'http://doi.org/' }}">DOI</a>]
+    [<a target="_blank" rel="noopener noreferrer" href="https://doi.org/{{entry.doi}}">DOI</a>]
 {% endif %}
 {% if entry.eprint %}
 	[<a target="_blank" rel="noopener noreferrer" href="https://arxiv.org/abs/{{entry.eprint}}">arXiv</a>]
