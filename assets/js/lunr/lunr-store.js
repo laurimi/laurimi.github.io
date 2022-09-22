@@ -40,4 +40,16 @@ var store = [{
         "tags": [],
         "url": "https://laurimi.github.io/news/2021/03/09/icra2021.html",
         "teaser": null
+      },{
+        "title": "Python API for Dec-POMDP problems in the .dpomdp format",
+        "excerpt":"Decentralized POMDPs are a popular mathematical framework for multiagent sequential decision-making under uncertainty. The .dpomdp file format for describing Dec-POMDPs has been around for a while, and the only parser for this file format I am aware of comes from the MADP toolbox written in C++. As Python is arguably...","categories": ["news"],
+        "tags": [],
+        "url": "https://laurimi.github.io/news/2022/09/22/pydpomdp.html",
+        "teaser": null
+      },{
+        "title": "Survey article on POMDPs in robotics in IEEE T-RO",
+        "excerpt":"Partially observable Markov decision processes (POMDPs) are a mathematical model for decision-making under uncertainty. Among other things, POMDPs can help robots to reliably handle noisy sensing, imperfect control, and environment changes. Together with my co-authors David Hsu and Joni Pajarinen, we have prepared a survey article that outlines how POMDPs...","categories": ["news"],
+        "tags": [],
+        "url": "https://laurimi.github.io/news/2022/09/22/survey.html",
+        "teaser": null
       }]

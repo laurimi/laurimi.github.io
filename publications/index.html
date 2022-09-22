@@ -289,7 +289,102 @@
       <section class="page__content" itemprop="text">
         
         <h2 class="bibliography">2022</h2>
-<ol class="bibliography" reversed="reversed"><li><div class="text-justify"><span id="Nicke_WBIR2022">Nicke, T., Graf, L., <b>Lauri, M.</b>, Mischkewitz, S., Frintrop, S., &amp; Heinrich, M. P. (2022). Cross domain knowledge compression in realtime optical flow prediction on ultrasound sequences. <i>10th International Workshop on Biomedical Image Registration</i>. https://openreview.net/forum?id=B0zu87RnqRF</span></div>
+<ol class="bibliography" reversed="reversed"><li><div class="text-justify"><span id="Lauri_TRO2022"><b>Lauri, M.</b>, Hsu, D., &amp; Pajarinen, J. (2022). Partially Observable Markov Decision Processes in Robotics: A Survey. <i>To Appear in IEEE Transactions on Robotics</i>, 1–20. https://doi.org/10.1109/TRO.2022.3200138</span></div>
+
+
+
+    [<a target="_blank" rel="noopener noreferrer" href="https://doi.org/10.1109/TRO.2022.3200138">DOI</a>]
+
+
+	[<a target="_blank" rel="noopener noreferrer" href="https://arxiv.org/abs/2209.10342">arXiv</a>]
+
+
+
+
+[<a onclick="toggleBibtexLauri_TRO2022()">Show/hide BibTeX</a>]
+[<a onclick="copyBibtexLauri_TRO2022()">Copy BibTeX to clipboard</a>]
+<div id="aLauri_TRO2022" style="display: none;">
+<pre id="bLauri_TRO2022">@article{Lauri_TRO2022,
+  title = {Partially Observable Markov Decision Processes in Robotics: A Survey},
+  author = {Lauri, Mikko and Hsu, David and Pajarinen, Joni},
+  journal = {To appear in IEEE Transactions on Robotics},
+  year = {2022},
+  pages = {1-20},
+  archiveprefix = {arXiv},
+  eprint = {2209.10342},
+  doi = {10.1109/TRO.2022.3200138}
+}
+</pre>
+</div>
+
+<script>
+function toggleBibtexLauri_TRO2022(parameter) {
+    var x= document.getElementById('aLauri_TRO2022');
+    if (x.style.display === 'none') {
+        x.style.display = 'block';
+    } else {
+        x.style.display = 'none';
+    }
+}
+
+function copyBibtexLauri_TRO2022(parameter) {
+	// https://stackoverflow.com/a/30810322/5471520
+	var textArea = document.createElement("textarea");
+	//
+	// *** This styling is an extra step which is likely not required. ***
+	//
+	// Why is it here? To ensure:
+	// 1. the element is able to have focus and selection.
+	// 2. if element was to flash render it has minimal visual impact.
+	// 3. less flakyness with selection and copying which **might** occur if
+	//    the textarea element is not visible.
+	//
+	// The likelihood is the element won't even render, not even a
+	// flash, so some of these are just precautions. However in
+	// Internet Explorer the element is visible whilst the popup
+	// box asking the user for permission for the web page to
+	// copy to the clipboard.
+	//
+
+	// Place in top-left corner of screen regardless of scroll position.
+	textArea.style.position = 'fixed';
+	textArea.style.top = 0;
+	textArea.style.left = 0;
+
+	// Ensure it has a small width and height. Setting to 1px / 1em
+	// doesn't work as this gives a negative w/h on some browsers.
+	textArea.style.width = '2em';
+	textArea.style.height = '2em';
+
+	// We don't need padding, reducing the size if it does flash render.
+	textArea.style.padding = 0;
+
+	// Clean up any borders.
+	textArea.style.border = 'none';
+	textArea.style.outline = 'none';
+	textArea.style.boxShadow = 'none';
+
+	// Avoid flash of white box if rendered for any reason.
+	textArea.style.background = 'transparent';
+
+	textArea.value = document.getElementById('bLauri_TRO2022').textContent;
+
+	document.body.appendChild(textArea);
+	textArea.focus();
+	textArea.select();
+
+	try {
+	  var successful = document.execCommand('copy');
+	  var msg = successful ? 'successful' : 'unsuccessful';
+	  console.log('Copying text command was ' + msg);
+	} catch (err) {
+	  console.log('Oops, unable to copy');
+	}
+
+	document.body.removeChild(textArea);
+} 
+</script></li>
+<li><div class="text-justify"><span id="Nicke_WBIR2022">Nicke, T., Graf, L., <b>Lauri, M.</b>, Mischkewitz, S., Frintrop, S., &amp; Heinrich, M. P. (2022). Cross domain knowledge compression in realtime optical flow prediction on ultrasound sequences. <i>10th International Workshop on Biomedical Image Registration</i>. https://openreview.net/forum?id=B0zu87RnqRF</span></div>
 
 
 	[<a target="_blank" rel="noopener noreferrer" href="https://openreview.net/forum?id=B0zu87RnqRF">URL</a>]
@@ -379,7 +474,7 @@ function copyBibtexNicke_WBIR2022(parameter) {
 	document.body.removeChild(textArea);
 } 
 </script></li>
-<li><div class="text-justify"><span id="Sarhan_KI2022">Sarhan, N., <b>Lauri, M.</b>, &amp; Frintrop, S. (2022). Multi-phase Fine-Tuning: A New Fine-Tuning Approach for Sign Language Recognition. <i>KI - Künstliche Intelligenz</i>. https://doi.org/10.1007/s13218-021-00746-2</span></div>
+<li><div class="text-justify"><span id="Sarhan_KI2022">Sarhan, N., <b>Lauri, M.</b>, &amp; Frintrop, S. (2022). Multi-phase Fine-Tuning: A New Fine-Tuning Approach for Sign Language Recognition. <i>KI - Künstliche Intelligenz</i>, <i>36</i>, 91–98. https://doi.org/10.1007/s13218-021-00746-2</span></div>
 
 
 
@@ -396,6 +491,8 @@ function copyBibtexNicke_WBIR2022(parameter) {
   author = {Sarhan, Noha and Lauri, Mikko and Frintrop, Simone},
   title = {Multi-phase Fine-Tuning: A New Fine-Tuning Approach for Sign Language Recognition},
   year = {2022},
+  number = {36},
+  pages = {91--98},
   doi = {10.1007/s13218-021-00746-2},
   journal = {KI - K\"{u}nstliche Intelligenz}
 }
@@ -564,9 +661,11 @@ function copyBibtexBanik_ICVS2021(parameter) {
 	document.body.removeChild(textArea);
 } 
 </script></li>
-<li><div class="text-justify"><span id="Gao_ICRA2020">Gao, G., <b>Lauri, M.</b>, Hu, X., Zhang, J., &amp; Frintrop, S. (2021, June). CloudAAE: Learning 6D Object Pose Regression with On-line Data Synthesis on Point Clouds. <i>To Appear in Proc. IEEE Intl. Conf. on Robotics and Automation (ICRA 2021)</i>.</span></div>
+<li><div class="text-justify"><span id="Gao_ICRA2021">Gao, G., <b>Lauri, M.</b>, Hu, X., Zhang, J., &amp; Frintrop, S. (2021). CloudAAE: Learning 6D Object Pose Regression with On-line Data Synthesis on Point Clouds. <i>Proc. IEEE Intl. Conf. on Robotics and Automation (ICRA 2021)</i>, 11081–11087. https://doi.org/10.1109/ICRA48506.2021.9561475</span></div>
 
 
+
+    [<a target="_blank" rel="noopener noreferrer" href="https://doi.org/10.1109/ICRA48506.2021.9561475">DOI</a>]
 
 
 	[<a target="_blank" rel="noopener noreferrer" href="https://arxiv.org/abs/2103.01977">arXiv</a>]
@@ -576,15 +675,17 @@ function copyBibtexBanik_ICVS2021(parameter) {
 
 
 
-[<a onclick="toggleBibtexGao_ICRA2020()">Show/hide BibTeX</a>]
-[<a onclick="copyBibtexGao_ICRA2020()">Copy BibTeX to clipboard</a>]
-<div id="aGao_ICRA2020" style="display: none;">
-<pre id="bGao_ICRA2020">@inproceedings{Gao_ICRA2020,
+[<a onclick="toggleBibtexGao_ICRA2021()">Show/hide BibTeX</a>]
+[<a onclick="copyBibtexGao_ICRA2021()">Copy BibTeX to clipboard</a>]
+<div id="aGao_ICRA2021" style="display: none;">
+<pre id="bGao_ICRA2021">@inproceedings{Gao_ICRA2021,
   author = {Gao, Ge and Lauri, Mikko and Hu, Xiaolin and Zhang, Jianwei and Frintrop, Simone},
   title = {{CloudAAE: Learning 6D Object Pose Regression with On-line Data Synthesis on Point Clouds}},
-  booktitle = {to appear in Proc. IEEE Intl. Conf. on Robotics and Automation (ICRA 2021)},
+  booktitle = {Proc. IEEE Intl. Conf. on Robotics and Automation (ICRA 2021)},
+  pages = {11081--11087},
   year = {2021},
   month = jun,
+  doi = {10.1109/ICRA48506.2021.9561475},
   address = {Xi'an, China},
   eprint = {2103.01977},
   codelink = {https://github.com/GeeeG/CloudAAE}
@@ -593,8 +694,8 @@ function copyBibtexBanik_ICVS2021(parameter) {
 </div>
 
 <script>
-function toggleBibtexGao_ICRA2020(parameter) {
-    var x= document.getElementById('aGao_ICRA2020');
+function toggleBibtexGao_ICRA2021(parameter) {
+    var x= document.getElementById('aGao_ICRA2021');
     if (x.style.display === 'none') {
         x.style.display = 'block';
     } else {
@@ -602,7 +703,7 @@ function toggleBibtexGao_ICRA2020(parameter) {
     }
 }
 
-function copyBibtexGao_ICRA2020(parameter) {
+function copyBibtexGao_ICRA2021(parameter) {
 	// https://stackoverflow.com/a/30810322/5471520
 	var textArea = document.createElement("textarea");
 	//
@@ -642,7 +743,7 @@ function copyBibtexGao_ICRA2020(parameter) {
 	// Avoid flash of white box if rendered for any reason.
 	textArea.style.background = 'transparent';
 
-	textArea.value = document.getElementById('bGao_ICRA2020').textContent;
+	textArea.value = document.getElementById('bGao_ICRA2021').textContent;
 
 	document.body.appendChild(textArea);
 	textArea.focus();
@@ -1043,9 +1144,11 @@ function copyBibtexLauri_JAAMAS2020(parameter) {
 	document.body.removeChild(textArea);
 } 
 </script></li>
-<li><div class="text-justify"><span id="Gao_ICRA2021">Gao, G., <b>Lauri, M.</b>, Wang, Y., Hu, X., Zhang, J., &amp; Frintrop, S. (2020, June). 6D Object Pose Regression via Supervised Learning on Point Clouds. <i>Proc. IEEE Intl. Conf. on Robotics and Automation (ICRA)</i>.</span></div>
+<li><div class="text-justify"><span id="Gao_ICRA2020">Gao, G., <b>Lauri, M.</b>, Wang, Y., Hu, X., Zhang, J., &amp; Frintrop, S. (2020). 6D Object Pose Regression via Supervised Learning on Point Clouds. <i>Proc. IEEE Intl. Conf. on Robotics and Automation (ICRA)</i>, 3643–3649. https://doi.org/10.1109/ICRA40945.2020.9197461</span></div>
 
 
+
+    [<a target="_blank" rel="noopener noreferrer" href="https://doi.org/10.1109/ICRA40945.2020.9197461">DOI</a>]
 
 
 	[<a target="_blank" rel="noopener noreferrer" href="https://arxiv.org/abs/2001.08942">arXiv</a>]
@@ -1057,12 +1160,14 @@ function copyBibtexLauri_JAAMAS2020(parameter) {
 	[<a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/watch?v=OhNMngzxFDQ">Video</a>]
 
 
-[<a onclick="toggleBibtexGao_ICRA2021()">Show/hide BibTeX</a>]
-[<a onclick="copyBibtexGao_ICRA2021()">Copy BibTeX to clipboard</a>]
-<div id="aGao_ICRA2021" style="display: none;">
-<pre id="bGao_ICRA2021">@inproceedings{Gao_ICRA2021,
+[<a onclick="toggleBibtexGao_ICRA2020()">Show/hide BibTeX</a>]
+[<a onclick="copyBibtexGao_ICRA2020()">Copy BibTeX to clipboard</a>]
+<div id="aGao_ICRA2020" style="display: none;">
+<pre id="bGao_ICRA2020">@inproceedings{Gao_ICRA2020,
   author = {Gao, Ge and Lauri, Mikko and Wang, Yulong and Hu, Xiaolin and Zhang, Jianwei and Frintrop, Simone},
   title = {{6D Object Pose Regression via Supervised Learning on Point Clouds}},
+  pages = {3643--3649},
+  doi = {10.1109/ICRA40945.2020.9197461},
   booktitle = {Proc. IEEE Intl. Conf. on Robotics and Automation (ICRA)},
   year = {2020},
   month = jun,
@@ -1075,8 +1180,8 @@ function copyBibtexLauri_JAAMAS2020(parameter) {
 </div>
 
 <script>
-function toggleBibtexGao_ICRA2021(parameter) {
-    var x= document.getElementById('aGao_ICRA2021');
+function toggleBibtexGao_ICRA2020(parameter) {
+    var x= document.getElementById('aGao_ICRA2020');
     if (x.style.display === 'none') {
         x.style.display = 'block';
     } else {
@@ -1084,7 +1189,7 @@ function toggleBibtexGao_ICRA2021(parameter) {
     }
 }
 
-function copyBibtexGao_ICRA2021(parameter) {
+function copyBibtexGao_ICRA2020(parameter) {
 	// https://stackoverflow.com/a/30810322/5471520
 	var textArea = document.createElement("textarea");
 	//
@@ -1124,7 +1229,7 @@ function copyBibtexGao_ICRA2021(parameter) {
 	// Avoid flash of white box if rendered for any reason.
 	textArea.style.background = 'transparent';
 
-	textArea.value = document.getElementById('bGao_ICRA2021').textContent;
+	textArea.value = document.getElementById('bGao_ICRA2020').textContent;
 
 	document.body.appendChild(textArea);
 	textArea.focus();
